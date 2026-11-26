@@ -1,0 +1,67 @@
+<!-- ========================================================================
+     HALAMAN 4: RUANG GURU (LOGIN / AKSES GURU & ADMIN)
+     ======================================================================== -->
+<section id="page-4" class="screen-page">
+  <div class="page-content-wrapper" style="max-width: 660px; margin: auto; justify-content: center;">
+    
+    <div class="arcade-panel">
+      <div class="page-header-banner">
+        <div class="page-title-box">
+          <h2><i class="fa-solid fa-chalkboard-user" style="color: #9D4EDD;"></i> Ruang Guru & Admin</h2>
+          <p>Khusus Administrator dan Bapak/Ibu Guru Matematika Kelas 10 Fase E.</p>
+        </div>
+        <button class="arcade-btn btn-secondary btn-sm" onclick="navigateTo(2)">
+          <i class="fa-solid fa-arrow-left"></i> KEMBALI
+        </button>
+      </div>
+
+      <div id="teacher-alert" class="arcade-alert alert-warning">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        <span id="teacher-alert-text">Pemberitahuan guru</span>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 180px; gap: 20px; align-items: center;">
+        <form id="form-teacher-login" onsubmit="event.preventDefault(); handleTeacherLogin();">
+          <div class="arcade-form-group">
+            <label class="arcade-label" for="teacher-user">
+              <i class="fa-solid fa-user-shield"></i> ID / Username Guru / Admin:
+            </label>
+            <input type="text" id="teacher-user" class="arcade-input" value="Admin Gaussy" placeholder="Masukkan ID Guru/Admin..." required autocomplete="off">
+          </div>
+
+          <div class="arcade-form-group">
+            <label class="arcade-label" for="teacher-pass">
+              <i class="fa-solid fa-key"></i> Kata Sandi (Password):
+            </label>
+            <div class="password-input-wrap">
+              <input type="password" id="teacher-pass" class="arcade-input" value="KendaliArithmaSchool" placeholder="Masukkan password..." required autocomplete="off">
+              <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('teacher-pass', this)" title="Lihat/Sembunyikan Password">
+                <i class="fa-solid fa-eye"></i>
+              </button>
+            </div>
+            <small style="font-size: 11px; font-weight: 700; color: #5D4037; display: block; margin-top: 4px; background: var(--pastel-yellow-light); border: 1.5px dashed #FFD152; border-radius: 8px; padding: 4px 8px;">
+              💡 Kredensial Guru/Admin: ID: <code>Admin Gaussy</code> | Sandi: <code>KendaliArithmaSchool</code>
+            </small>
+          </div>
+
+          <div style="margin-top: 14px;">
+            <button type="submit" class="arcade-btn btn-lavender" style="width: 100%;">
+              <i class="fa-solid fa-arrow-right-to-bracket"></i> MASUK KE RUANG GURU
+            </button>
+          </div>
+        </form>
+
+        <div style="text-align: center;">
+          <div class="gaussy-speech-bubble" style="font-size: 11.5px; margin-bottom: 6px;">
+            "Selamat datang di Ruang Kendali, Bapak/Ibu Guru!" 🍎📚
+          </div>
+          <div class="gaussy-mascot-3d-wrap sm" onclick="playGaussyGreeting()" title="Klik Gaussy Guru!">
+            <img src="assets/gaussy_mascot.png" class="gaussy-3d-img" alt="Gaussy Guru">
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>

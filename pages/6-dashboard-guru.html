@@ -1,0 +1,105 @@
+<!-- ========================================================================
+     HALAMAN 6: DASHBOARD GURU (ACC & HAPUS AKUN SISWA)
+     ======================================================================== -->
+<section id="page-6" class="screen-page">
+  <div class="page-content-wrapper">
+    
+    <div class="arcade-panel" style="height: 100%; display: flex; flex-direction: column;">
+      
+      <div class="page-header-banner">
+        <div class="page-title-box">
+          <h2><i class="fa-solid fa-users-gear" style="color: #4EA8DE;"></i> Dashboard Guru: Manajemen Akun Siswa</h2>
+          <p>Setujui (ACC) pendaftaran siswa baru agar mereka dapat login dan belajar di ArithmaSchool.</p>
+        </div>
+        
+        <div style="display: flex; gap: 8px;">
+          <button class="arcade-btn btn-mint btn-sm" onclick="openAddStudentModal()" title="Tambah Akun Siswa Baru (Langsung Ter-ACC)">
+            <i class="fa-solid fa-user-plus"></i> + Akun Siswa
+          </button>
+          <button class="arcade-btn btn-secondary btn-sm" onclick="handleTeacherLogout()">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i> KELUAR
+          </button>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 10px;">
+        <div style="background: var(--pastel-blue-light); border: 2.5px solid var(--dark-outline); border-radius: 14px; padding: 7px 12px; display: flex; align-items: center; justify-content: space-between;">
+          <div>
+            <div style="font-size: 10px; font-weight: 800; color: var(--text-muted); text-transform: uppercase;">Total Pendaftar</div>
+            <div id="stat-total-students" style="font-family: var(--font-arcade); font-size: 20px; font-weight: 700; color: var(--dark-outline);">0</div>
+          </div>
+          <i class="fa-solid fa-user-group" style="font-size: 22px; color: var(--pastel-blue);"></i>
+        </div>
+
+        <div style="background: var(--pastel-yellow-light); border: 2.5px solid var(--dark-outline); border-radius: 14px; padding: 7px 12px; display: flex; align-items: center; justify-content: space-between;">
+          <div>
+            <div style="font-size: 10px; font-weight: 800; color: #E65100; text-transform: uppercase;">Menunggu ACC</div>
+            <div id="stat-pending-students" style="font-family: var(--font-arcade); font-size: 20px; font-weight: 700; color: #E65100;">0</div>
+          </div>
+          <i class="fa-solid fa-clock-rotate-left" style="font-size: 22px; color: #FFB703;"></i>
+        </div>
+
+        <div style="background: var(--pastel-mint-light); border: 2.5px solid var(--dark-outline); border-radius: 14px; padding: 7px 12px; display: flex; align-items: center; justify-content: space-between;">
+          <div>
+            <div style="font-size: 10px; font-weight: 800; color: #1B5E20; text-transform: uppercase;">Disetujui (Aktif)</div>
+            <div id="stat-approved-students" style="font-family: var(--font-arcade); font-size: 20px; font-weight: 700; color: #1B5E20;">0</div>
+          </div>
+          <i class="fa-solid fa-circle-check" style="font-size: 22px; color: var(--pastel-mint);"></i>
+        </div>
+      </div>
+
+      <!-- Tabel Pendaftar Siswa & Aksi Guru -->
+      <div class="teacher-table-wrapper" style="flex: 1;">
+        <table class="teacher-table">
+          <thead>
+            <tr>
+              <th style="width: 45px;">No</th>
+              <th>Nama Siswa</th>
+              <th>Waktu Pendaftaran</th>
+              <th style="width: 140px;">Status Akun</th>
+              <th style="width: 200px; text-align: center;">Aksi Guru</th>
+            </tr>
+          </thead>
+          <tbody id="student-table-body"></tbody>
+        </table>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px; font-size: 11px; font-weight: 700; color: var(--text-muted);">
+        <span>💡 Akun yang di-ACC statusnya langsung berubah menjadi <strong>"Disetujui"</strong> dan siswa dapat login saat itu juga.</span>
+        <button class="arcade-btn btn-sm btn-secondary" onclick="resetDefaultData()">
+          <i class="fa-solid fa-rotate-left"></i> Reset ke Data Bawaan
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+<!-- Modal Popup Form Input Akun Siswa -->
+<div id="modal-add-student" class="arcade-modal-backdrop" style="display: none;">
+  <div class="arcade-modal-card">
+    <div style="font-size: 38px; margin-bottom: 4px;">👤✨</div>
+    <h3 style="font-family: var(--font-arcade); font-size: 18px; font-weight: 700; color: var(--dark-outline); margin-bottom: 14px;">
+      Tambah Akun Siswa Baru
+    </h3>
+    
+    <form id="form-add-student" onsubmit="saveNewStudent(event)">
+      <div class="arcade-form-group">
+        <label class="arcade-label">Nama Siswa</label>
+        <input type="text" id="new-student-name" class="arcade-input" placeholder="Contoh: Budi Santoso" required>
+      </div>
+
+
+
+      <div class="arcade-form-group">
+        <label class="arcade-label">Password</label>
+        <input type="password" id="new-student-password" class="arcade-input" placeholder="Masukkan password" required>
+      </div>
+
+      <div style="display: flex; gap: 10px; justify-content: center; margin-top: 18px;">
+        <button type="button" class="arcade-btn btn-secondary btn-sm" onclick="closeAddStudentModal()">BATAL</button>
+        <button type="submit" class="arcade-btn btn-mint btn-sm">SIMPAN & ACC</button>
+      </div>
+    </form>
+  </div>
+</div>

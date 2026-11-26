@@ -1,0 +1,272 @@
+/* ==========================================================================
+   WADAH UTAMA STAGE 16:9, NAVBAR, TOAST & CONTAINER HALAMAN
+   ========================================================================== */
+
+#app-viewport {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  width: 100%;
+  height: 100%;
+  background: url('../assets/school_bg.jpg') center center / cover no-repeat;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Top Floating Utility Bar */
+.top-utility-bar {
+  position: absolute;
+  top: 14px;
+  left: 20px;
+  right: 20px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.top-utility-bar > * {
+  pointer-events: auto;
+}
+
+.logo-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 3px solid var(--dark-outline);
+  box-shadow: 0 4px 0 var(--dark-shadow);
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-family: var(--font-arcade);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--dark-outline);
+  backdrop-filter: blur(6px);
+  transition: transform 0.15s ease;
+}
+
+.logo-badge:hover {
+  transform: translateY(-2px);
+}
+
+.logo-badge .badge-icon {
+  color: #FF9F1C;
+  font-size: 16px;
+}
+
+.top-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-pill {
+  background: var(--pastel-yellow-light);
+  border: 2.5px solid var(--dark-outline);
+  box-shadow: 0 3px 0 var(--dark-shadow);
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.user-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0 var(--dark-shadow);
+  background: #FFF3CD;
+}
+
+/* Floating Audio Status Toast */
+.audio-toast {
+  position: absolute;
+  top: 56px;
+  right: 20px;
+  background: rgba(37, 40, 61, 0.95);
+  color: #FFFFFF;
+  font-family: var(--font-arcade);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 2.5px solid #FFD152;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.22s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.audio-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Sistem Container Halaman */
+#pages-container {
+  display: contents;
+}
+
+.screen-page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  flex-direction: column;
+  padding: 64px 30px 22px 30px;
+  box-sizing: border-box;
+  background: rgba(235, 246, 255, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.screen-page.active {
+  display: flex;
+  animation: screenFadeIn 0.28s cubic-bezier(0.1, 0.9, 0.2, 1);
+}
+
+@keyframes screenFadeIn {
+  from { opacity: 0; transform: scale(0.985); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+#page-1 {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.page-content-wrapper {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.page-header-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2.5px dashed #CBD5E1;
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+  gap: 14px;
+}
+
+.page-title-box h2 {
+  font-family: var(--font-arcade);
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--dark-outline);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  line-height: 1.2;
+}
+
+.page-title-box p {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.page-footer-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 2.5px dashed #CBD5E1;
+  padding-top: 8px;
+  margin-top: 8px;
+}
+
+.content-box-scrollable {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 6px;
+  box-sizing: border-box;
+}
+.content-box-scrollable::-webkit-scrollbar { width: 7px; }
+.content-box-scrollable::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); border-radius: 8px; }
+.content-box-scrollable::-webkit-scrollbar-thumb { background: var(--pastel-lavender); border: 2px solid var(--dark-outline); border-radius: 8px; }
+
+.code-slot-notice {
+  background: #F1F5F9;
+  border: 2px dashed #94A3B8;
+  border-radius: 10px;
+  padding: 5px 10px;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #475569;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+/* Penyesuaian Layout untuk Layar HP */
+@media (max-width: 768px) {
+  #app-viewport {
+    height: auto !important;
+    min-height: 100vh !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .top-utility-bar {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 2.5px solid var(--dark-outline);
+  }
+
+  .logo-badge {
+    font-size: 11px;
+    padding: 4px 10px;
+  }
+
+  .screen-page {
+    position: relative;
+    min-height: calc(100vh - 60px);
+    height: auto;
+    padding: 16px 14px 40px 14px;
+    overflow-y: visible;
+  }
+}
+/* Penyesuaian Responsif Layar Laptop Standar & Layar Pendek agar Tombol Tidak Terpotong */
+@media (max-height: 720px) {
+  .cover-bubble-title {
+    font-size: 36px !important;
+  }
+  .gaussy-mascot-3d-wrap.lg {
+    width: 125px !important;
+    height: 125px !important;
+  }
+  .cover-hero-title-box {
+    margin-bottom: 6px !important;
+  }
+  .screen-page {
+    padding: 56px 20px 16px 20px !important;
+  }
+}

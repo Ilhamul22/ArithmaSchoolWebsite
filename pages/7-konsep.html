@@ -1,0 +1,133 @@
+<!-- ========================================================================
+     HALAMAN 7: MENU 1 - PENGUATAN KONSEP (KARTU MISTERI ARITMATIKA GAUSSY)
+     ======================================================================== -->
+<section id="page-7" class="screen-page">
+  <div class="page-content-wrapper">
+    
+    <div class="arcade-panel" style="height: 100%; display: flex; flex-direction: column;">
+      
+      <!-- Top Header Menu 1 -->
+      <div class="page-header-banner">
+        <div class="page-title-box">
+          <h2><i class="fa-solid fa-layer-group" style="color: #4EA8DE;"></i> Menu 1: Penguatan Konsep (Kartu Misteri Gaussy)</h2>
+          <p>Acak kartu, klik untuk memperbesar ke tengah layar, dan selesaikan tantangan konsep Barisan & Deret Aritmatika!</p>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span class="status-badge" style="background: var(--pastel-mint); color: #065F46;" id="card-progress-badge">
+            ✅ Benar: 0 / 10 (Target Tuntas)
+          </span>
+          <button class="arcade-btn btn-secondary btn-sm" onclick="resetMenu1WithConfirmation()" title="Acak Ulang Kartu">
+            <i class="fa-solid fa-rotate-right"></i> Reset
+          </button>
+        </div>
+      </div>
+
+      <!-- Area Scrollable Konten Utama Menu 1 -->
+      <div class="content-box-scrollable" id="container-materi-konsep">
+        
+        <!-- Kondisi 1: Kotak Tombol Acak Kartu di Awal (Jika Belum Diacak) -->
+        <div id="menu1-shuffle-screen" class="shuffle-area-box" style="display: none;">
+          <div class="shuffle-stack" id="shuffle-stack-anim">
+            <div class="shuffle-card-ghost"></div>
+            <div class="shuffle-card-ghost"></div>
+            <div class="shuffle-card-ghost"></div>
+          </div>
+          <h3 style="font-family: var(--font-arcade); font-size: 19px; color: var(--dark-outline); margin-bottom: 6px;">
+            🎴 Siap Menguji Konsep Barisan & Deret?
+          </h3>
+          <p style="font-size: 12.5px; color: var(--text-muted); max-width: 480px; margin-bottom: 16px;">
+            Tekan tombol acak di bawah untuk mengocok tumpukan kartu misteri Gaussy. Jawab benar minimal <strong>10 kartu</strong> untuk menuntaskan menu ini!
+          </p>
+          <button class="arcade-btn btn-mint btn-lg" onclick="startShuffleAnimation()" id="btn-shuffle-cards">
+            <i class="fa-solid fa-shuffle"></i> ACAK KARTU SEKARANG
+          </button>
+        </div>
+
+        <!-- Banner Ketuntasan (Muncul jika sudah tuntas >= 10 kartu) -->
+        <div id="menu1-completion-box" class="completion-banner-card" style="display: none;">
+          <div style="font-size: 40px; margin-bottom: 6px;">🎉🏆✨</div>
+          <h3 style="font-family: var(--font-arcade); font-size: 21px; color: #065F46; margin-bottom: 6px;">
+            SELAMAT! KAMU TELAH TUNTAS DI MENU 1!
+          </h3>
+          <p style="font-size: 13px; color: #166534; max-width: 580px; margin: 0 auto 14px auto;">
+            Kamu telah berhasil menjawab dengan benar minimal 10 kartu konsep. Kamu bisa lanjut mencoba soal kartu lainnya, atau langsung melangkah ke Menu 2 (Studio Arsitek)!
+          </p>
+          <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+            <button class="arcade-btn btn-yellow btn-sm" onclick="continueMoreCards()">
+              <i class="fa-solid fa-circle-question"></i> Lanjut Mencoba Soal Lain
+            </button>
+          </div>
+        </div>
+
+        <!-- Banner Semua Soal Selesai / Habis -->
+        <div id="menu1-all-exhausted-box" class="completion-banner-card" style="display: none;">
+          <div style="font-size: 40px; margin-bottom: 6px;">🎉👑✨</div>
+          <h3 style="font-family: var(--font-arcade); font-size: 21px; color: #065F46; margin-bottom: 6px;">
+            SEMUA SOAL TELAH SELESAI!
+          </h3>
+          <p style="font-size: 13.5px; color: #166534; max-width: 580px; margin: 0 auto; font-weight: 700; line-height: 1.5;">
+            Semua soal sudah anda selesaikan silakan anda melanjutkan ke menu 2 atau klik tombol reset untuk memulai ulang.
+          </p>
+        </div>
+
+        <!-- Kondisi 2: Grid Kartu Pastel Interaktif (Muncul setelah diacak) -->
+        <div id="menu1-active-cards-area" style="display: none;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin: 8px 4px 4px;">
+            <small style="font-weight: 700; color: #64748B;">
+              💡 Klik salah satu kartu pastel untuk memperbesar dan membuka soalnya:
+            </small>
+            <small id="cards-remaining-count" style="font-weight: 800; color: #0284C7;"></small>
+          </div>
+
+          <div class="pastel-cards-grid" id="pastel-cards-grid">
+            <!-- Kartu pastel 6 warna dirender oleh JavaScript -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Navigasi Halaman -->
+      <footer class="page-footer-nav">
+        <button class="arcade-btn btn-secondary btn-sm" onclick="navigateTo(5)">
+          <i class="fa-solid fa-house"></i> KEMBALI KE MENU UTAMA
+        </button>
+        <button class="arcade-btn btn-yellow btn-sm" onclick="tryGoToMenu2()">
+          KE MENU 2 (STUDIO ARSITEK) <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </footer>
+
+    </div>
+
+  </div>
+
+  <!-- MODAL ZOOM KARTU MEMBESAR DI TENGAH LAYAR -->
+  <div id="card-zoom-modal" class="card-zoom-modal-backdrop" style="display: none;">
+    <div class="card-zoom-card" id="card-zoom-card-element">
+      <!-- Banner Header Kartu yang Membesar -->
+      <div class="card-zoom-banner" id="card-zoom-banner">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 22px;">🦉</span>
+          <div>
+            <h4 id="zoom-card-topic" style="font-family: var(--font-arcade); font-size: 14px; margin: 0; color: #FFF;">Topik Kartu</h4>
+            <small id="zoom-card-number" style="opacity: 0.9; font-weight: 700; color: #FFF;"></small>
+          </div>
+        </div>
+        <button onclick="pickAnotherCardFromZoom()" style="background: rgba(255,255,255,0.25); border: none; border-radius: 50%; width: 28px; height: 28px; color: #FFF; font-weight: 800; cursor: pointer;">✕</button>
+      </div>
+
+      <!-- Isi Pertanyaan & Opsi Jawaban -->
+      <div class="card-zoom-body">
+        <div class="card-question-text" id="zoom-question-text">
+          Pertanyaan soal barisan aritmatika akan muncul di sini...
+        </div>
+
+        <div class="card-options-grid" id="zoom-options-grid">
+          <!-- 4 Tombol Pilihan Jawaban akan di-render di sini -->
+        </div>
+
+        <!-- Kotak Feedback Jawaban -->
+        <div id="zoom-feedback-box" style="display: none; padding: 10px 14px; border-radius: 12px; font-size: 12.5px; font-weight: 700; line-height: 1.4; margin-top: 10px;"></div>
+      </div>
+    </div>
+  </div>
+</section>

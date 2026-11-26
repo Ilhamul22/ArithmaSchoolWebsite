@@ -1,0 +1,58 @@
+<!-- ========================================================================
+     HALAMAN 3: PENDAFTARAN SISWA (DAFTAR JADI MURID BARU!)
+     ======================================================================== -->
+<section id="page-3" class="screen-page">
+  <div class="page-content-wrapper" style="max-width: 660px; margin: auto; justify-content: center;">
+    
+    <div class="arcade-panel">
+      <div class="page-header-banner">
+        <div class="page-title-box">
+          <h2><i class="fa-solid fa-id-card" style="color: #FF8FA3;"></i> Daftar Jadi Murid Baru!</h2>
+          <p>Isi formulir pendaftaran. Akunmu akan diverifikasi oleh Guru sebelum bisa login.</p>
+        </div>
+        <span class="status-badge status-menunggu"><i class="fa-solid fa-user-clock"></i> Formulir Siswa</span>
+      </div>
+
+      <div id="reg-alert" class="arcade-alert alert-danger">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        <span id="reg-alert-text">Peringatan formulir</span>
+      </div>
+
+      <form id="form-register-student" onsubmit="event.preventDefault(); handleStudentRegister();">
+        <div class="arcade-form-group">
+          <label class="arcade-label" for="reg-name">
+            <i class="fa-solid fa-user-tag"></i> Nama Lengkap Siswa:
+          </label>
+          <input type="text" id="reg-name" class="arcade-input" placeholder="Contoh: Budi Santoso" required autocomplete="off">
+        </div>
+
+        <div class="arcade-form-group">
+          <label class="arcade-label" for="reg-password">
+            <i class="fa-solid fa-lock"></i> Buat Kata Sandi (Password):
+          </label>
+          <div class="password-input-wrap">
+            <input type="password" id="reg-password" class="arcade-input" placeholder="Minimal 3 karakter..." required autocomplete="off">
+            <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('reg-password', this)" title="Lihat/Sembunyikan Password">
+              <i class="fa-solid fa-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <div style="background: var(--pastel-yellow-light); border: 2px dashed #E0A800; border-radius: 12px; padding: 9px 14px; margin-bottom: 16px; font-size: 12px; font-weight: 700; color: #5D4037;">
+          <i class="fa-solid fa-hourglass-half"></i> Catatan: Akun yang kamu daftarkan akan berstatus <strong>"Menunggu ACC"</strong> sampai Guru menyetujuinya di Dashboard Guru.
+        </div>
+
+        <div style="display: flex; gap: 12px; justify-content: flex-end;">
+          <button type="button" class="arcade-btn btn-secondary" onclick="navigateTo(2)">
+            <i class="fa-solid fa-xmark"></i> BATAL
+          </button>
+          <button type="submit" class="arcade-btn btn-mint">
+            <i class="fa-solid fa-paper-plane"></i> DAFTAR SEKARANG
+          </button>
+        </div>
+      </form>
+
+    </div>
+
+  </div>
+</section>

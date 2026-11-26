@@ -1,0 +1,135 @@
+<!-- ========================================================================
+     HALAMAN PROFIL SISWA: EDIT PROFIL & RINCIAN PROGRESS 3 FITUR UTAMA
+     ======================================================================== -->
+<section id="page-profile" class="screen-page">
+  <div class="page-content-wrapper" style="max-width: 860px; margin: auto;">
+    
+    <div class="arcade-panel" style="height: 100%; display: flex; flex-direction: column;">
+      
+      <div class="page-header-banner" style="margin-bottom: 8px;">
+        <div class="page-title-box">
+          <h2><i class="fa-solid fa-id-badge" style="color: #FF9F1C;"></i> Profil Siswa & Capaian Belajar</h2>
+          <p>Kelola identitas akunmu (avatar, nama, password) dan pantau capaian progress di 3 fitur utama!</p>
+        </div>
+        <button class="arcade-btn btn-secondary btn-sm" onclick="navigateTo(5)" title="Kembali ke Menu Utama">
+          <i class="fa-solid fa-arrow-left"></i> KEMBALI KE MENU UTAMA
+        </button>
+      </div>
+
+      <div id="profile-page-alert" class="arcade-alert alert-success">
+        <i class="fa-solid fa-circle-check"></i>
+        <span id="profile-page-alert-text">Perubahan profil berhasil disimpan!</span>
+      </div>
+
+      <div class="code-slot-notice">
+        <i class="fa-solid fa-code"></i>
+        <span>PENANDA KODE AKTIF: Anda dapat menambahkan kolom biodata siswa (sekolah/kelas/nisn) atau badge prestasi di halaman ini.</span>
+      </div>
+
+      <div class="content-box-scrollable" style="flex: 1;">
+        
+        <div style="display: grid; grid-template-columns: 1fr 1.25fr; gap: 16px; align-items: start;">
+          
+          <div style="background: #FFFFFF; border: 3px solid var(--dark-outline); border-radius: 18px; padding: 12px 14px; box-shadow: 0 4px 0 var(--dark-shadow);">
+            <h4 style="font-family: var(--font-arcade); font-size: 14px; color: var(--dark-outline); margin-bottom: 8px;">
+              <i class="fa-solid fa-user-pen" style="color: #4EA8DE;"></i> Pengaturan Identitas Akun
+            </h4>
+
+            <div style="margin-bottom: 8px;">
+              <label class="arcade-label" style="font-size: 11.5px;">Avatar Karakter Siswa:</label>
+              <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
+                <div class="profile-avatar-circle" id="profile-page-avatar-preview" style="width: 48px; height: 48px; font-size: 26px; border-width: 3px;">
+                  🦉
+                </div>
+                <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); line-height: 1.3;">
+                  Pilih avatar karakter favoritmu di bawah:
+                </div>
+              </div>
+
+              <div class="avatar-preset-grid">
+                <button type="button" class="avatar-preset-item selected" onclick="selectProfileAvatar('🦉')">🦉</button>
+                <button type="button" class="avatar-preset-item" onclick="selectProfileAvatar('🦊')">🦊</button>
+                <button type="button" class="avatar-preset-item" onclick="selectProfileAvatar('🐰')">🐰</button>
+                <button type="button" class="avatar-preset-item" onclick="selectProfileAvatar('🐱')">🐱</button>
+                <button type="button" class="avatar-preset-item" onclick="selectProfileAvatar('🐻')">🐻</button>
+                <button type="button" class="avatar-preset-item" onclick="selectProfileAvatar('🦁')">🦁</button>
+                <button type="button" class="avatar-preset-item" onclick="selectProfileAvatar('🚀')">🚀</button>
+                <button type="button" class="avatar-preset-item" onclick="selectProfileAvatar('⭐')">⭐</button>
+              </div>
+            </div>
+
+            <div class="arcade-form-group">
+              <label class="arcade-label" for="profile-page-name" style="font-size: 11.5px;">Nama Lengkap Siswa:</label>
+              <input type="text" id="profile-page-name" class="arcade-input" placeholder="Ketik nama lengkapmu..." required autocomplete="off">
+            </div>
+
+            <div class="arcade-form-group">
+              <label class="arcade-label" for="profile-page-password" style="font-size: 11.5px;">Kata Sandi (Password):</label>
+              <input type="text" id="profile-page-password" class="arcade-input" placeholder="Ketik password akun..." required autocomplete="off">
+            </div>
+
+            <div style="margin-top: 10px;">
+              <button type="button" class="arcade-btn btn-mint btn-sm" onclick="saveProfileChangesFromPage()" style="width: 100%;">
+                <i class="fa-solid fa-floppy-disk"></i> SIMPAN PERUBAHAN
+              </button>
+            </div>
+          </div>
+
+          <div style="background: #FFFFFF; border: 3px solid var(--dark-outline); border-radius: 18px; padding: 12px 14px; box-shadow: 0 4px 0 var(--dark-shadow);">
+            <h4 style="font-family: var(--font-arcade); font-size: 14px; color: var(--dark-outline); margin-bottom: 8px;">
+              <i class="fa-solid fa-chart-line" style="color: #9D4EDD;"></i> Rincian Progress 3 Fitur Utama
+            </h4>
+
+            <div style="background: var(--pastel-yellow-light); border: 2.5px solid var(--dark-outline); border-radius: 14px; padding: 8px 12px; margin-bottom: 10px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; font-family: var(--font-arcade); font-weight: 700; font-size: 13px; color: var(--dark-outline);">
+                <span>Total Capaian Belajar</span>
+                <span id="page-progress-percentage-label" style="font-size: 16px; color: #4361EE;">0%</span>
+              </div>
+              <div class="progress-bar-container" style="height: 12px;">
+                <div id="page-progress-bar-total" class="progress-bar-inner" style="width: 0%;"></div>
+              </div>
+            </div>
+
+            <div style="background: #F8FAFC; border: 2px solid #CBD5E1; border-radius: 12px; padding: 7px 10px; margin-bottom: 6px; display: flex; align-items: center; justify-content: space-between;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div style="font-size: 20px;">📘</div>
+                <div>
+                  <div style="font-family: var(--font-arcade); font-size: 12.5px; font-weight: 700;">1. Kartu Flip Konsep</div>
+                  <div id="page-progress-konsep-status" style="font-size: 10.5px; font-weight: 700; color: #E65100;">⏳ Belum Selesai</div>
+                </div>
+              </div>
+              <button class="arcade-btn btn-mint btn-sm" onclick="navigateTo(7)">Buka</button>
+            </div>
+
+            <div style="background: #F8FAFC; border: 2px solid #CBD5E1; border-radius: 12px; padding: 7px 10px; margin-bottom: 6px; display: flex; align-items: center; justify-content: space-between;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div style="font-size: 20px;">🏗️</div>
+                <div>
+                  <div style="font-family: var(--font-arcade); font-size: 12.5px; font-weight: 700;">2. Studio Arsitek Mandiri</div>
+                  <div id="page-progress-tantangan-status" style="font-size: 10.5px; font-weight: 700; color: #E65100;">⏳ Belum Selesai</div>
+                </div>
+              </div>
+              <button class="arcade-btn btn-yellow btn-sm" onclick="navigateTo(8)">Buka</button>
+            </div>
+
+            <div style="background: #F8FAFC; border: 2px solid #CBD5E1; border-radius: 12px; padding: 7px 10px; display: flex; align-items: center; justify-content: space-between;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div style="font-size: 20px;">📜</div>
+                <div>
+                  <div style="font-family: var(--font-arcade); font-size: 12.5px; font-weight: 700;">3. Asesmen, Refleksi & Sertifikat</div>
+                  <div id="page-progress-asesmen-status" style="font-size: 10.5px; font-weight: 700; color: #E65100;">⏳ Belum Selesai</div>
+                </div>
+              </div>
+              <button class="arcade-btn btn-pink btn-sm" onclick="navigateTo(9)">Buka</button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>

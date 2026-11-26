@@ -1,0 +1,1101 @@
+/* ==========================================================================
+   KOMPONEN MASKOT 3D, KARTU FITUR, FLIP CARD, ARSITEK, FORMULIR & MODAL
+   ========================================================================== */
+
+/* 1. Maskot 3D Gaussy & Wand Sparkle Effect */
+.gaussy-mascot-3d-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 800px;
+  cursor: pointer;
+  width: 140px;
+  height: 140px;
+  user-select: none;
+}
+
+.gaussy-mascot-3d-wrap.lg { width: 175px; height: 175px; }
+.gaussy-mascot-3d-wrap.sm { width: 85px; height: 85px; }
+
+.gaussy-3d-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 16px rgba(0, 0, 0, 0.32)) drop-shadow(0 3px 5px rgba(37, 40, 61, 0.22));
+  transform-style: preserve-3d;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: gaussyFloat3D 3.5s ease-in-out infinite;
+}
+
+@keyframes gaussyFloat3D {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+    filter: drop-shadow(0 14px 16px rgba(0, 0, 0, 0.32));
+  }
+  50% {
+    transform: translateY(-9px) rotate(1.5deg) scale(1.02);
+    filter: drop-shadow(0 22px 22px rgba(0, 0, 0, 0.22));
+  }
+}
+
+.gaussy-mascot-3d-wrap:hover .gaussy-3d-img {
+  transform: translateY(-12px) rotate(-2deg) scale(1.07);
+  filter: drop-shadow(0 22px 24px rgba(0, 0, 0, 0.35)) drop-shadow(0 0 16px rgba(255, 209, 82, 0.65));
+}
+
+.wand-sparkle {
+  position: absolute;
+  font-size: 18px;
+  pointer-events: none;
+  animation: sparkleTwinkle 2s infinite ease-in-out;
+}
+.wand-sparkle.sparkle-1 { top: 15%; left: 10%; animation-delay: 0.2s; }
+.wand-sparkle.sparkle-2 { top: 28%; left: 4%; animation-delay: 1.1s; }
+
+@keyframes sparkleTwinkle {
+  0%, 100% { opacity: 0; transform: scale(0.4) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.3) rotate(180deg); }
+}
+
+.gaussy-speech-bubble {
+  position: relative;
+  background: #FFFFFF;
+  border: 3px solid var(--dark-outline);
+  border-radius: 18px;
+  padding: 9px 18px;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--dark-outline);
+  box-shadow: 0 5px 0 var(--dark-shadow);
+  max-width: 320px;
+  line-height: 1.4;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.gaussy-speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -11px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 11px solid var(--dark-outline);
+}
+
+.gaussy-speech-bubble::before {
+  content: '';
+  position: absolute;
+  bottom: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #FFFFFF;
+  z-index: 1;
+}
+
+/* 2. Judul Sampul 3D Bubble Typography */
+.cover-hero-title-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 12px;
+  user-select: none;
+}
+
+.cover-phase-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2.5px solid var(--dark-outline);
+  box-shadow: 0 4px 0 var(--dark-shadow);
+  border-radius: 999px;
+  padding: 3px 14px;
+  font-family: var(--font-arcade);
+  font-size: 11px;
+  font-weight: 800;
+  color: #0284C7;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.cover-bubble-title {
+  font-family: var(--font-bubble);
+  font-size: 48px;
+  line-height: 1.05;
+  margin: 0;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.35));
+  animation: titleFloat 4s ease-in-out infinite;
+}
+
+.bubble-word-green {
+  color: #06D6A0;
+  text-shadow:
+    -3px -3px 0 #25283D,
+     3px -3px 0 #25283D,
+    -3px  3px 0 #25283D,
+     3px  3px 0 #25283D,
+    -2px  0   0 #25283D,
+     2px  0   0 #25283D,
+     0   -2px 0 #25283D,
+     0    2px 0 #25283D,
+     0    5px 0 #059669,
+     0    8px 0 #065F46,
+     0   11px 0 #1E293B,
+     0   14px 10px rgba(0,0,0,0.4);
+}
+
+.bubble-word-orange {
+  color: #FFB703;
+  text-shadow:
+    -3px -3px 0 #25283D,
+     3px -3px 0 #25283D,
+    -3px  3px 0 #25283D,
+     3px  3px 0 #25283D,
+    -2px  0   0 #25283D,
+     2px  0   0 #25283D,
+     0   -2px 0 #25283D,
+     0    2px 0 #25283D,
+     0    5px 0 #D97706,
+     0    8px 0 #92400E,
+     0   11px 0 #1E293B,
+     0   14px 10px rgba(0,0,0,0.4);
+}
+
+.cover-sub-badge {
+  display: inline-block;
+  margin-top: -6px;
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF8E72 100%);
+  border: 3px solid #25283D;
+  border-radius: 50px;
+  padding: 4px 20px;
+  box-shadow: 0 4px 0 #25283D, 0 8px 12px rgba(0,0,0,0.2);
+  transform: rotate(-1.5deg);
+}
+
+.cover-sub-badge span {
+  font-family: var(--font-comic);
+  font-size: 19px;
+  color: #FFFFFF;
+  letter-spacing: 1.5px;
+  text-shadow:
+    -2px -2px 0 #25283D,
+     2px -2px 0 #25283D,
+    -2px  2px 0 #25283D,
+     2px  2px 0 #25283D,
+     0    3px 0 #831843;
+}
+
+.cover-topic-pill {
+  margin-top: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: #FFFFFF;
+  border: 2px solid #25283D;
+  border-radius: 999px;
+  padding: 3px 14px;
+  box-shadow: 0 3px 0 #25283D;
+  font-family: var(--font-arcade);
+  font-size: 11px;
+  font-weight: 800;
+  color: #334155;
+  letter-spacing: 1px;
+}
+
+@keyframes titleFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* 3. Tiga Kartu Fitur Utama */
+.three-features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  width: 100%;
+  max-width: 1020px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.ref-card {
+  background: #FFFFFF;
+  border-radius: 22px;
+  box-shadow: 0 8px 0 var(--dark-shadow), 0 12px 24px rgba(0,0,0,0.12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.22s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+  position: relative;
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 8px 10px 16px 10px;
+  overflow: hidden;
+}
+
+.ref-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 0 var(--dark-shadow), 0 18px 28px rgba(0,0,0,0.2);
+}
+
+.ref-card.card-konsep { border: 4px solid #F59E0B; }
+.ref-card.card-tantangan { border: 4px solid #E11D48; }
+.ref-card.card-asesmen { border: 4px solid #7C3AED; }
+
+.ref-img-frame {
+  width: 100%;
+  height: 125px;
+  border-radius: 16px 16px 8px 8px;
+  border: 2.5px solid var(--dark-outline);
+  overflow: hidden;
+  position: relative;
+  background: #1E293B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.ref-img-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.ref-card:hover .ref-img-frame img { transform: scale(1.06); }
+
+.ref-badge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid var(--dark-outline);
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-family: var(--font-arcade);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.badge-gold { color: #B45309; }
+.badge-ruby { color: #BE123C; }
+.badge-purple { color: #6D28D9; }
+
+.ref-card-title {
+  font-family: var(--font-arcade);
+  font-size: 14.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #3B0764;
+  margin-bottom: 4px;
+  text-align: center;
+  line-height: 1.25;
+  letter-spacing: 0.3px;
+  padding: 0 4px;
+}
+
+.ref-card-desc {
+  font-size: 11.2px;
+  font-weight: 600;
+  color: #475569;
+  text-align: center;
+  margin-bottom: 12px;
+  line-height: 1.35;
+  flex-grow: 1;
+  padding: 0 6px;
+}
+
+/* 4. Widget Profil Siswa Menu Utama */
+.student-profile-widget {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 3px solid var(--dark-outline);
+  border-radius: 18px;
+  box-shadow: 0 4px 0 var(--dark-shadow);
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.student-profile-widget:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 var(--dark-shadow);
+  background: #FFF9E6;
+}
+
+.profile-avatar-circle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--pastel-yellow);
+  border: 2.5px solid var(--dark-outline);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  box-shadow: 0 2px 0 var(--dark-shadow);
+  flex-shrink: 0;
+}
+
+.profile-info-block { display: flex; flex-direction: column; }
+.profile-name-row { display: flex; align-items: center; gap: 8px; }
+.profile-name-text { font-family: var(--font-arcade); font-size: 14px; font-weight: 700; color: var(--dark-outline); }
+.profile-edit-badge { font-size: 9.5px; font-weight: 800; background: var(--pastel-blue-light); color: #0077B6; border: 1.5px solid var(--dark-outline); padding: 1px 5px; border-radius: 6px; }
+.profile-role-text { font-size: 10.5px; font-weight: 700; color: var(--text-muted); }
+.progress-pill-inline { display: inline-block; background: #E8F5E9; color: #2E7D32; font-weight: 800; padding: 1px 6px; border-radius: 8px; font-size: 10px; border: 1px solid #A5D6A7; }
+
+/* 5. Panel Arcade, Formulir & Tabel Guru */
+.arcade-panel {
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 3.5px solid var(--dark-outline);
+  border-radius: 22px;
+  box-shadow: 0 9px 0 var(--dark-shadow);
+  padding: 18px 22px;
+  max-height: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.arcade-form-group { margin-bottom: 10px; text-align: left; }
+.arcade-label { display: block; font-family: var(--font-arcade); font-size: 12.5px; font-weight: 700; color: var(--dark-outline); margin-bottom: 4px; }
+.arcade-input {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 12px;
+  border: 2.5px solid var(--dark-outline);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-main);
+  background: #FFFFFF;
+  outline: none;
+  transition: all 0.15s ease;
+  box-sizing: border-box;
+}
+.arcade-input:focus { border-color: #4EA8DE; box-shadow: 0 0 0 3px rgba(78, 168, 222, 0.25); }
+
+/* Wadah Input Password dengan Ikon Mata (Toggle Visibility) */
+.password-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.password-input-wrap .arcade-input {
+  padding-right: 42px; /* Memberi ruang agar teks password tidak bertumpukan dengan ikon */
+}
+
+.password-toggle-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: #64748B;
+  cursor: pointer;
+  font-size: 15px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  z-index: 5;
+}
+
+.password-toggle-btn:hover {
+  color: var(--dark-outline);
+  transform: translateY(-50%) scale(1.15);
+}
+
+.arcade-alert {
+  border: 2.5px solid var(--dark-outline);
+  border-radius: 12px;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: none;
+  align-items: center;
+  gap: 8px;
+}
+.arcade-alert.show { display: flex; }
+.alert-warning { background: var(--pastel-yellow-light); border-color: #E0A800; color: #795548; }
+.alert-danger { background: var(--pastel-pink-light); border-color: #EF476F; color: #900C3F; }
+.alert-success { background: var(--pastel-mint-light); border-color: var(--pastel-mint); color: #1B5E20; }
+
+.teacher-table-wrapper {
+  max-height: 230px;
+  overflow-y: auto;
+  border-radius: 14px;
+  border: 3px solid var(--dark-outline);
+  background: #FFFFFF;
+}
+.teacher-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 12.5px; }
+.teacher-table th {
+  background: var(--pastel-blue-light);
+  padding: 9px 12px;
+  font-family: var(--font-arcade);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--dark-outline);
+  border-bottom: 2.5px solid var(--dark-outline);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.teacher-table td { padding: 8px 12px; border-bottom: 1.5px solid #E0E0E0; font-weight: 700; vertical-align: middle; }
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 800;
+  border: 2px solid var(--dark-outline);
+}
+.status-menunggu { background: var(--pastel-yellow); color: #5D4037; }
+.status-disetujui { background: var(--pastel-mint); color: #1B5E20; }
+
+/* 6. Modal Dialog & Progress Bar */
+.arcade-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(21, 23, 34, 0.72);
+  backdrop-filter: blur(5px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+.arcade-modal-card {
+  background: #FFFFFF;
+  border: 4px solid var(--dark-outline);
+  border-radius: 22px;
+  box-shadow: 0 12px 0 var(--dark-shadow);
+  padding: 22px;
+  max-width: 460px;
+  width: 90%;
+  text-align: center;
+  animation: modalBounceIn 0.25s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+@keyframes modalBounceIn { from { transform: scale(0.85); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+.avatar-preset-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 4px; }
+.avatar-preset-item {
+  background: #FFFFFF;
+  border: 2.5px solid var(--dark-outline);
+  border-radius: 12px;
+  font-size: 22px;
+  padding: 5px;
+  cursor: pointer;
+  transition: all 0.12s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.avatar-preset-item:hover { background: var(--pastel-yellow-light); transform: translateY(-2px); }
+.avatar-preset-item.selected { background: var(--pastel-mint-light); border-color: #2E7D32; box-shadow: 0 0 0 2px #4CAF50; }
+
+.progress-bar-container { width: 100%; background: #E2E8F0; border: 2px solid var(--dark-outline); border-radius: 999px; overflow: hidden; margin: 5px 0; }
+.progress-bar-inner { height: 100%; background: linear-gradient(90deg, #70D6BC 0%, #FFD152 100%); transition: width 0.35s ease; }
+
+/* 7. Kartu Interaktif Pastel-Arcade (Menu 1 - Sesuai Gambar Kartu) */
+.cards-container-deck {
+  width: 100%;
+  position: relative;
+  min-height: 280px;
+}
+
+.shuffle-area-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 16px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 3px dashed var(--pastel-lavender);
+  border-radius: 20px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.shuffle-stack {
+  position: relative;
+  width: 170px;
+  height: 110px;
+  margin: 0 auto 16px;
+}
+
+.shuffle-card-ghost {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  border: 3px solid #FFFFFF;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+}
+.shuffle-card-ghost:nth-child(1) { background: #5CA4E8; transform: rotate(-6deg) translate(-8px, -4px); z-index: 1; }
+.shuffle-card-ghost:nth-child(2) { background: #F87171; transform: rotate(4deg) translate(6px, -2px); z-index: 2; }
+.shuffle-card-ghost:nth-child(3) { background: #48D1B1; transform: rotate(-2deg); z-index: 3; }
+
+.shuffling .shuffle-card-ghost:nth-child(1) { animation: shuffleLeft 0.5s infinite alternate ease-in-out; }
+.shuffling .shuffle-card-ghost:nth-child(2) { animation: shuffleRight 0.5s infinite alternate ease-in-out 0.1s; }
+.shuffling .shuffle-card-ghost:nth-child(3) { animation: shuffleCenter 0.5s infinite alternate ease-in-out 0.2s; }
+
+@keyframes shuffleLeft {
+  0% { transform: rotate(-6deg) translate(-8px, -4px); }
+  100% { transform: rotate(-14deg) translate(-50px, -12px); }
+}
+@keyframes shuffleRight {
+  0% { transform: rotate(4deg) translate(6px, -2px); }
+  100% { transform: rotate(14deg) translate(50px, 12px); }
+}
+@keyframes shuffleCenter {
+  0% { transform: rotate(-2deg) scale(1); }
+  100% { transform: rotate(0deg) scale(1.08) translateY(-14px); }
+}
+
+/* Grid Kartu Pastel Arcade */
+.pastel-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 10px;
+  perspective: 1200px;
+}
+
+/* Kartu Desain Persis Sesuai Contoh Gambar User */
+.pastel-arcade-card {
+  position: relative;
+  height: 155px;
+  border-radius: 18px;
+  border: 4px solid #FFFFFF;
+  box-shadow: 0 6px 14px rgba(37, 40, 61, 0.15), 0 2px 4px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 8px 10px;
+  color: #FFFFFF;
+  user-select: none;
+}
+
+.pastel-arcade-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 14px 26px rgba(37, 40, 61, 0.25), 0 0 16px rgba(255, 255, 255, 0.6);
+}
+
+.pastel-arcade-card.card-vanish {
+  animation: cardVanishAnim 0.6s forwards cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+@keyframes cardVanishAnim {
+  0% { transform: scale(1); opacity: 1; }
+  40% { transform: scale(1.15) rotate(4deg); opacity: 0.9; filter: brightness(1.4); }
+  100% { transform: scale(0.2) translateY(-60px) rotate(-12deg); opacity: 0; }
+}
+
+/* 6 Warna Tema Pastel Sesuai Gambar User */
+.card-theme-blue {
+  background: repeating-linear-gradient(45deg, rgba(255,255,255,0.09), rgba(255,255,255,0.09) 6px, transparent 6px, transparent 12px), #5CA4E8;
+}
+.card-theme-coral {
+  background: repeating-linear-gradient(45deg, rgba(255,255,255,0.09), rgba(255,255,255,0.09) 6px, transparent 6px, transparent 12px), #F87171;
+}
+.card-theme-mint {
+  background: repeating-linear-gradient(45deg, rgba(255,255,255,0.09), rgba(255,255,255,0.09) 6px, transparent 6px, transparent 12px), #48D1B1;
+}
+.card-theme-yellow {
+  background: repeating-linear-gradient(45deg, rgba(255,255,255,0.09), rgba(255,255,255,0.09) 6px, transparent 6px, transparent 12px), #FBBF24;
+}
+.card-theme-purple {
+  background: repeating-linear-gradient(45deg, rgba(255,255,255,0.09), rgba(255,255,255,0.09) 6px, transparent 6px, transparent 12px), #A78BFA;
+}
+.card-theme-pink {
+  background: repeating-linear-gradient(45deg, rgba(255,255,255,0.09), rgba(255,255,255,0.09) 6px, transparent 6px, transparent 12px), #F472B6;
+}
+
+/* Bingkai Dalaman Kartu dengan Sudut Diamond */
+.pac-inner-frame {
+  position: absolute;
+  inset: 5px;
+  border: 1.5px solid rgba(255, 255, 255, 0.82);
+  border-radius: 13px;
+  pointer-events: none;
+}
+.pac-inner-frame::before, .pac-inner-frame::after {
+  content: '◇';
+  position: absolute;
+  font-size: 8px;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1;
+}
+.pac-inner-frame::before { top: 2px; left: 3px; }
+.pac-inner-frame::after { bottom: 2px; right: 3px; }
+
+/* Komponen Konten Kartu */
+.pac-header {
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  position: relative;
+  z-index: 2;
+}
+
+.pac-center-motif {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2px 0;
+  z-index: 2;
+}
+
+.pac-line {
+  flex: 1;
+  height: 1.5px;
+  background: rgba(255, 255, 255, 0.7);
+  margin: 0 8px;
+}
+
+.pac-medallion {
+  position: relative;
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Cincin Sunburst & Lingkaran */
+.pac-sunburst {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(255, 255, 255, 0.75);
+  animation: sunburstRotate 18s linear infinite;
+}
+@keyframes sunburstRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.pac-medallion-core {
+  width: 44px;
+  height: 44px;
+  background: #1E293B;
+  border-radius: 50%;
+  border: 2.5px solid #FFD152;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.pac-icon-cap {
+  font-size: 13px;
+  color: #FFF;
+  line-height: 1;
+  margin-bottom: 1px;
+}
+.pac-icon-face {
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* 5 Titik Indikator di Bawah */
+.pac-dots-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  position: relative;
+  z-index: 2;
+}
+.pac-dot {
+  width: 4.5px;
+  height: 4.5px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.55);
+}
+.pac-dot.active {
+  width: 6.5px;
+  height: 6.5px;
+  background: #FFFFFF;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
+/* Modal Zoom Kartu di Tengah Layar (Saat Kartu Diklik) */
+.card-zoom-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.78);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  padding: 16px;
+  animation: fadeInModal 0.22s ease-out;
+}
+
+@keyframes fadeInModal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.card-zoom-card {
+  background: #FFFFFF;
+  border: 4px solid var(--dark-outline);
+  border-radius: 22px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  max-width: 520px;
+  width: 100%;
+  overflow: hidden;
+  animation: zoomInCard 0.28s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes zoomInCard {
+  from { transform: scale(0.65) translateY(30px); opacity: 0; }
+  to { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.card-zoom-banner {
+  padding: 14px 18px;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-zoom-body {
+  padding: 18px 20px;
+}
+
+.card-question-text {
+  font-family: var(--font-arcade);
+  font-size: 15px;
+  font-weight: 700;
+  color: #1E293B;
+  line-height: 1.45;
+  margin-bottom: 14px;
+}
+
+.card-options-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 9px;
+  margin-bottom: 12px;
+}
+
+.card-choice-btn {
+  background: #F8FAFC;
+  border: 2.5px solid #CBD5E1;
+  border-radius: 12px;
+  padding: 10px 14px;
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  color: #1E293B;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.card-choice-btn:hover {
+  background: #EFF6FF;
+  border-color: #60A5FA;
+  transform: translateX(4px);
+}
+.card-choice-btn.correct {
+  background: #DCFCE7 !important;
+  border-color: #10B981 !important;
+  color: #065F46 !important;
+}
+.card-choice-btn.wrong {
+  background: #FEE2E2 !important;
+  border-color: #EF4444 !important;
+  color: #991B1B !important;
+}
+
+/* Banner Ketuntasan Menu 1 & Menu 2 */
+.completion-banner-card {
+  background: linear-gradient(135deg, #FEF3C7 0%, #DCFCE7 100%);
+  border: 3.5px solid #10B981;
+  border-radius: 20px;
+  padding: 20px 24px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.22);
+  margin-top: 12px;
+  animation: popIn 0.35s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+
+/* Menu 3: 3 pilihan landing sejajar ke samping (sistem sama seperti Menu 2) */
+#menu3-landing-options .case-select-card {
+  font-family: inherit;
+  cursor: pointer;
+}
+#menu3-landing-options .case-select-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 7px 0 var(--dark-shadow);
+}
+
+/* 8. Studio Arsitek Pemodelan Mandiri (Menu 2) - 4 Kasus & 10 Suku */
+.case-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin: 12px 0 24px;
+}
+
+.case-select-card {
+  background: #FFFFFF;
+  border: 3.5px solid var(--dark-outline);
+  border-radius: 20px;
+  padding: 24px 14px;
+  min-height: 250px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 6px 0 var(--dark-shadow);
+  transition: all 0.18s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.case-select-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 7px 0 var(--dark-shadow);
+}
+.case-select-card.active {
+  border-color: #4EA8DE;
+  background: #F0F9FF;
+  box-shadow: 0 0 0 3px rgba(78, 168, 222, 0.35), 0 5px 0 var(--dark-shadow);
+}
+.case-select-card.tuntas {
+  border-color: #10B981;
+  background: #F0FDF4;
+}
+
+.architect-stage {
+  background: #F8FAFC;
+  border: 2.5px dashed #94A3B8;
+  border-radius: 14px;
+  padding: 12px;
+  max-height: 250px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Tema Kasus Kursi Teater */
+.stage-theme-theater {
+  background: radial-gradient(circle at 50% 10%, #FFFBEB 0%, #F5F3FF 100%);
+  border-color: #C084FC;
+}
+/* Tema Kasus Sel Biologi */
+.stage-theme-biology {
+  background: radial-gradient(circle at 50% 10%, #ECFDF5 0%, #E0F2FE 100%);
+  border-color: #34D399;
+}
+/* Tema Kasus Tabungan */
+.stage-theme-money {
+  background: radial-gradient(circle at 50% 10%, #FFFBEB 0%, #FEF3C7 100%);
+  border-color: #FBBF24;
+}
+/* Tema Kasus Pipa */
+.stage-theme-pipe {
+  background: radial-gradient(circle at 50% 10%, #F8FAFC 0%, #E2E8F0 100%);
+  border-color: #94A3B8;
+}
+
+.stage-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.92);
+  border: 1.5px solid #CBD5E1;
+  border-radius: 8px;
+  padding: 4px 8px;
+}
+.stage-item {
+  font-size: 18px;
+  animation: popIn 0.2s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+@keyframes popIn { from { transform: scale(0); } to { transform: scale(1); } }
+
+/* 10 Pengatur Baris Grid Responsif */
+.rows-adjust-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+  margin-top: 8px;
+}
+
+/* 9. Laporan Hasil Belajar & Sertifikat Digital (Menu 3) */
+.report-eval-card {
+  background: #FFFFFF;
+  border: 2.5px solid var(--dark-outline);
+  border-radius: 16px;
+  padding: 14px;
+  box-shadow: 0 4px 0 var(--dark-shadow);
+  margin-bottom: 12px;
+}
+
+.competency-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  margin: 12px 0;
+}
+.competency-table th, .competency-table td {
+  border: 1.5px solid #CBD5E1;
+  padding: 8px 10px;
+  text-align: left;
+}
+.competency-table th {
+  background: #F1F5F9;
+  font-weight: 800;
+  color: #1E293B;
+}
+.competency-table tr:nth-child(even) {
+  background: #F8FAFC;
+}
+
+/* ==========================================================================
+   PENYESUAIAN RESPONSIF HP & TABLET (KARTU, FONT, & GRID)
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* Judul sampul mengecil agar muat di layar HP */
+  .cover-bubble-title {
+    font-size: 28px !important;
+  }
+
+  .cover-sub-badge span {
+    font-size: 13px !important;
+  }
+
+  .gaussy-mascot-3d-wrap.lg {
+    width: 110px !important;
+    height: 110px !important;
+  }
+
+  /* Kartu Pastel Menu 1 jadi 2 kolom di tablet / 1 kolom di HP kecil */
+  .pastel-cards-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+
+  /* 4 Kasus Menu 2 jadi 2 kolom */
+  .case-cards-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  /* 10 Pengatur Baris jadi 2 kolom atau 5 baris */
+  .rows-adjust-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* 3 Kartu Menu Utama jadi 1 kolom ke bawah */
+  .three-features-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* 3 Pilihan Menu 3 jadi 1 kolom di layar sempit */
+  #menu3-landing-options {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Grid login, form guru, studio arsitek jadi 1 kolom */
+  #report-cards-grid,
+  div[style*="grid-template-columns: 1.15fr 1fr"],
+  div[style*="grid-template-columns: 1.1fr 1fr"],
+  div[style*="grid-template-columns: 1fr 220px"],
+  div[style*="grid-template-columns: 1fr 180px"],
+  div[style*="grid-template-columns: 1fr 1.25fr"],
+  div[style*="grid-template-columns: repeat(3, 1fr)"],
+  div[style*="grid-template-columns: repeat(4, 1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .pastel-cards-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .case-cards-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+/* ==========================================================================
+   KONTROL GAME PETUALANGAN DI FOOTER HALAMAN 9 (◀ ▶ ▲ ⚔)
+   ========================================================================== */
+.game-pad-btn {
+  width: 44px;
+  height: 40px;
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1;
+  border: 2.5px solid var(--dark-outline);
+  border-radius: 11px;
+  background: #FFFFFF;
+  color: var(--dark-outline);
+  cursor: pointer;
+  box-shadow: 0 3px 0 var(--dark-shadow);
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: transform .06s ease, box-shadow .06s ease, background .06s ease;
+}
+.game-pad-btn:hover { background: #FEF3C7; }
+.game-pad-btn.pressed,
+.game-pad-btn:active {
+  background: #FDE68A;
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 var(--dark-shadow);
+}

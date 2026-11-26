@@ -1,0 +1,380 @@
+﻿<!-- ========================================================================
+     HALAMAN 9: MENU 3 - GAME SUPER MARIO, JURNAL REFLEKSI & LAPORAN HASIL BELAJAR
+     ======================================================================== -->
+<section id="page-9" class="screen-page">
+  <div class="page-content-wrapper">
+    
+  <!-- Header Khusus Halaman GAME PETUALANGAN (di ATAS kotak putih, hanya saat game aktif) -->
+  <div id="game-page-header" style="flex-shrink: 0; padding: 0 4px; margin-bottom: 8px; display: none; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: nowrap;">
+    <div class="page-title-box" style="flex: 1; min-width: 0;">
+      <h2><i class="fa-solid fa-gamepad" style="color: #8B5CF6;"></i> Menu 3: Game Petualangan — Misi Berangkat ke Sekolah</h2>
+    </div>
+    <div style="display: flex; gap: 6px; flex-shrink: 0; align-items: center;">
+      <button class="arcade-btn btn-secondary btn-sm" onclick="showMenu3Landing()" style="padding: 4px 10px; font-size: 11px; white-space: nowrap;">
+        <i class="fa-solid fa-arrow-left"></i> Kembali ke 3 Pilihan Menu
+      </button>
+      <button class="arcade-btn btn-yellow btn-sm" onclick="reloadAssessmentGame()" style="padding: 4px 10px; font-size: 11px; white-space: nowrap;">
+        <i class="fa-solid fa-rotate-right"></i> Muat Ulang Game
+      </button>
+    </div>
+  </div>
+
+    <div class="arcade-panel" style="flex: 1; min-height: 0; display: flex; flex-direction: column; padding: 8px 12px 10px 12px;">
+
+      <!-- Top Header Menu 3 (DI DALAM kotak putih, sama seperti Menu 1 & 2). Saat halaman GAME aktif, header ini disembunyikan & digantikan header khusus game di ATAS kotak putih -->
+      <div class="page-header-banner" id="menu3-inside-header" style="flex-shrink: 0;">
+        <div class="page-title-box">
+          <h2><i class="fa-solid fa-trophy" style="color: #8B5CF6;"></i> Menu 3: Game Petualangan, Refleksi, & Laporan Belajar</h2>
+          <p>Mainkan game petualangan ala Super Mario, isi jurnal refleksi diri, lalu cetak laporan hasil belajar & sertifikat kelulusan!</p>
+        </div>
+      </div>
+
+      <!-- Area Scrollable Konten Utama Menu 3 -->
+      <div class="content-box-scrollable" id="container-menu3-content" style="display: flex; flex-direction: column; min-height: 0; padding-right: 0;">
+        
+        <!-- ================================================================
+             LANDING SCREEN MENU 3: Pilih sub-menu dulu sebelum konten muncul
+             ================================================================ -->
+        <div id="menu3-landing-screen" style="text-align: center; padding: 24px 16px;">
+          <div style="font-size: 48px; margin-bottom: 10px;">🎓</div>
+          <h3 style="font-family: var(--font-arcade); font-size: 20px; color: #1E293B; margin-bottom: 6px;">
+            Menu 3: Game, Refleksi & Laporan Belajar
+          </h3>
+          <p style="font-size: 13px; color: var(--text-muted); max-width: 500px; margin: 0 auto 20px auto; line-height: 1.5;">
+            Pilih salah satu aktivitas di bawah ini untuk memulai! Kamu harus menyelesaikan misi sebelumnya untuk membuka misi berikutnya.
+          </p>
+          <!-- 3 PILIHAN MENU 3: SEJAJAR KE SAMPING (sistem sama seperti Menu 2) -->
+          <div id="menu3-landing-options" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; max-width: 780px; margin: 0 auto; align-items: stretch;">
+            
+            <!-- Pilihan 1: Game -->
+            <button class="case-select-card" id="menu3-opt-1" style="padding: 14px 10px; font-size: 13px;" onclick="openMenu3SubTab(1)">
+              <span style="font-size: 32px;">🎮</span>
+              <div style="font-weight: 800; text-align: center; color: #1E293B;">1. Game Petualangan</div>
+              <div style="font-size: 10.5px; color: #64748B; font-weight: 400; text-align: center; line-height: 1.4;">Mainkan game "Misi Berangkat ke Sekolah" & jawab soal barisan deret!</div>
+              <span class="status-badge status-menunggu" id="menu3-status-1" style="font-size: 10px; margin-top: 6px;">⏳ Belum</span>
+            </button>
+
+            <!-- Pilihan 2: Jurnal Refleksi -->
+            <button class="case-select-card" id="menu3-opt-2" style="padding: 14px 10px; font-size: 13px;" onclick="openMenu3SubTab(2)">
+              <span id="menu3-lock-2" style="font-size: 32px;">🔒</span>
+              <div style="font-weight: 800; text-align: center; color: #1E293B;">2. Jurnal Refleksi</div>
+              <div style="font-size: 10.5px; color: #64748B; font-weight: 400; text-align: center; line-height: 1.4;">Terbuka setelah game selesai. Renungkan proses belajarmu & isi kuesioner refleksi diri.</div>
+              <span class="status-badge status-menunggu" id="menu3-status-2" style="font-size: 10px; margin-top: 6px;">⏳ Belum</span>
+            </button>
+
+            <!-- Pilihan 3: Laporan & Sertifikat -->
+            <button class="case-select-card" id="menu3-opt-3" style="padding: 14px 10px; font-size: 13px;" onclick="openMenu3SubTab(3)">
+              <span id="menu3-lock-3" style="font-size: 32px;">🔒</span>
+              <div style="font-weight: 800; text-align: center; color: #1E293B;">3. Laporan Belajar & Sertifikat</div>
+              <div style="font-size: 10.5px; color: #64748B; font-weight: 400; text-align: center; line-height: 1.4;">Terbuka setelah refleksi diisi. Lihat laporan hasil belajar & unduh sertifikat kelulusanmu!</div>
+              <span class="status-badge status-menunggu" id="menu3-status-3" style="font-size: 10px; margin-top: 6px;">⏳ Belum</span>
+            </button>
+
+          </div>
+        </div>
+        <!-- ==================================================================
+             SUB-FITUR 1: GAME PETUALANGAN (SUPER MARIO STYLE PLATFORMER)
+             ================================================================== -->
+        <div id="subtab-1-content" style="display: none; height: 100%; flex: 1; min-height: 0; box-sizing: border-box;">
+          <div style="height: 100%; display: flex; flex-direction: column; box-sizing: border-box; overflow: hidden;">
+            
+            <!-- Iframe Wadah Game Platformer Canvas - Mengisi 100% sisa tinggi agar tidak pernah terpotong/scroll -->
+            <div style="flex: 1; min-height: 0; width: 100%; margin-top: 10px; border-radius: 10px; overflow: hidden; background: #3B1D7A;">
+              <iframe id="assessment-game-frame"
+                      src="game-asesmen.html"
+                      title="Game Misi Berangkat ke Sekolah"
+                      style="width: 100%; height: 100%; border: none; display: block;"
+                      allow="autoplay"></iframe>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================================================================
+             SUB-FITUR 2: JURNAL REFLEKSI MANDIRI SISWA
+             ================================================================== -->
+        <div id="subtab-2-content" style="display: none;">
+          <div style="background: #FFFFFF; border: 3px solid var(--dark-outline); border-radius: 18px; padding: 16px 20px; box-shadow: 0 4px 0 var(--dark-shadow);">
+            
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; border-bottom: 2px dashed #E2E8F0; padding-bottom: 8px;">
+              <div>
+                <h4 style="font-family: var(--font-arcade); font-size: 16.5px; color: #1E293B;">
+                  📝 Jurnal Refleksi Diri Siswa ArithmaSchool
+                </h4>
+                <p style="font-size: 12px; color: var(--text-muted);">
+                  Renungkan proses belajarmu di Menu 1, Menu 2, dan Menu 3. Pilih respons yang paling mewakili kondisimu:
+                </p>
+              </div>
+              <span class="status-badge" style="background: var(--pastel-yellow);" id="reflection-status-badge">
+                ⏳ Belum Disimpan
+              </span>
+            </div>
+
+            <!-- Formulir Pertanyaan Refleksi -->
+            <form id="form-student-reflection" onsubmit="saveStudentReflectionForm(event)">
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                
+                <div style="background: #F8FAFC; border: 2px solid #E2E8F0; border-radius: 12px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                  <span style="font-size: 12.5px; font-weight: 700; color: #334155; flex: 1; min-width: 250px;">
+                    1. Saya memahami definisi barisan aritmatika dan cara menemukan nilai beda ($b$).
+                  </span>
+                  <div style="display: flex; gap: 12px; font-size: 12px; font-weight: 800;">
+                    <label><input type="radio" name="ref1" value="Ya" checked> Ya</label>
+                    <label><input type="radio" name="ref1" value="Ragu-Ragu"> Ragu-Ragu</label>
+                    <label><input type="radio" name="ref1" value="Tidak"> Tidak</label>
+                  </div>
+                </div>
+
+                <div style="background: #F8FAFC; border: 2px solid #E2E8F0; border-radius: 12px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                  <span style="font-size: 12.5px; font-weight: 700; color: #334155; flex: 1; min-width: 250px;">
+                    2. Pada Menu 1 (Kartu Konsep), saya mampu mengidentifikasi formula rumus $U_n$ dan trik Gauss deret ($S_n$).
+                  </span>
+                  <div style="display: flex; gap: 12px; font-size: 12px; font-weight: 800;">
+                    <label><input type="radio" name="ref2" value="Ya" checked> Ya</label>
+                    <label><input type="radio" name="ref2" value="Ragu-Ragu"> Ragu-Ragu</label>
+                    <label><input type="radio" name="ref2" value="Tidak"> Tidak</label>
+                  </div>
+                </div>
+
+                <div style="background: #F8FAFC; border: 2px solid #E2E8F0; border-radius: 12px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                  <span style="font-size: 12.5px; font-weight: 700; color: #334155; flex: 1; min-width: 250px;">
+                    3. Pada Menu 2 (Studio Arsitek), saya mampu menghubungkan susunan visual objek nyata 10 suku dengan formulasi rumus matematika.
+                  </span>
+                  <div style="display: flex; gap: 12px; font-size: 12px; font-weight: 800;">
+                    <label><input type="radio" name="ref3" value="Ya" checked> Ya</label>
+                    <label><input type="radio" name="ref3" value="Ragu-Ragu"> Ragu-Ragu</label>
+                    <label><input type="radio" name="ref3" value="Tidak"> Tidak</label>
+                  </div>
+                </div>
+
+                <div style="background: #F8FAFC; border: 2px solid #E2E8F0; border-radius: 12px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                  <span style="font-size: 12.5px; font-weight: 700; color: #334155; flex: 1; min-width: 250px;">
+                    4. Pada Menu 3 (Game), saya tertantang memecahkan persoalan kontekstual barisan & deret sambil menghadapi rintangan permainan.
+                  </span>
+                  <div style="display: flex; gap: 12px; font-size: 12px; font-weight: 800;">
+                    <label><input type="radio" name="ref4" value="Ya" checked> Ya</label>
+                    <label><input type="radio" name="ref4" value="Ragu-Ragu"> Ragu-Ragu</label>
+                    <label><input type="radio" name="ref4" value="Tidak"> Tidak</label>
+                  </div>
+                </div>
+
+                <div style="background: #F8FAFC; border: 2px solid #E2E8F0; border-radius: 12px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                  <span style="font-size: 12.5px; font-weight: 700; color: #334155; flex: 1; min-width: 250px;">
+                    5. Saya merasa percaya diri dapat menerapkan konsep barisan dan deret aritmatika pada permasalahan nyata sehari-hari.
+                  </span>
+                  <div style="display: flex; gap: 12px; font-size: 12px; font-weight: 800;">
+                    <label><input type="radio" name="ref5" value="Ya" checked> Ya</label>
+                    <label><input type="radio" name="ref5" value="Ragu-Ragu"> Ragu-Ragu</label>
+                    <label><input type="radio" name="ref5" value="Tidak"> Tidak</label>
+                  </div>
+                </div>
+
+                <!-- Catatan Reflektif Tambahan -->
+                <div style="margin-top: 4px;">
+                  <label style="font-size: 12px; font-weight: 800; color: #475569; display: block; margin-bottom: 4px;">
+                    💬 Catatan Refleksi Mandiri (Hal apa yang paling menarik atau masih menantang bagimu?):
+                  </label>
+                  <textarea id="reflection-notes-input" class="arcade-input" rows="3" placeholder="Tuliskan pengalaman belajarmu di sini..."></textarea>
+                </div>
+
+              </div>
+
+              <div style="margin-top: 14px; display: flex; justify-content: flex-end; gap: 10px;">
+                <button type="submit" class="arcade-btn btn-mint btn-sm">
+                  <i class="fa-solid fa-floppy-disk"></i> SIMPAN REFLEKSI & BUKA LAPORAN 🏆
+                </button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+
+        <!-- ==================================================================
+             SUB-FITUR 3: LAPORAN HASIL BELAJAR & SERTIFIKAT DIGITAL
+             ================================================================== -->
+        <div id="subtab-3-content" style="display: none;">
+          
+          <!-- RANGKAIAN EVALUASI & INTERPRETASI PEDAGOGIS 4 ASPEK -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;" id="report-cards-grid">
+            
+            <!-- Evaluasi Menu 1: Kartu Konsep -->
+            <div class="report-eval-card" style="border-left: 6px solid #4EA8DE;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <strong style="color: #0284C7; font-size: 13px;"><i class="fa-solid fa-layer-group"></i> 1. Penguatan Konsep (Menu 1)</strong>
+                <span class="status-badge status-disetujui" id="rep-menu1-status">Tuntas</span>
+              </div>
+              <div style="font-size: 11.5px; color: #475569; line-height: 1.4; margin-bottom: 6px;">
+                • Soal Terjawab Benar: <strong id="rep-menu1-correct" style="color: #10B981;">0</strong> | Salah: <strong id="rep-menu1-wrong" style="color: #EF4444;">0</strong><br>
+                • Mengulang / Reset: <strong id="rep-menu1-resets">0 kali</strong>
+              </div>
+              <div style="background: #F0F9FF; border: 1.5px solid #BAE6FD; border-radius: 8px; padding: 6px 10px; font-size: 11px; line-height: 1.35; color: #0369A1;" id="rep-menu1-interpret">
+                Interpretasi: Sedang memproses analisis pemahaman konsep...
+              </div>
+            </div>
+
+            <!-- Evaluasi Menu 2: Studio Arsitek -->
+            <div class="report-eval-card" style="border-left: 6px solid #F59E0B;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <strong style="color: #D97706; font-size: 13px;"><i class="fa-solid fa-compass-drafting"></i> 2. Pemodelan 10 Suku (Menu 2)</strong>
+                <span class="status-badge status-disetujui" id="rep-menu2-status">Tuntas</span>
+              </div>
+              <div style="font-size: 11.5px; color: #475569; line-height: 1.4; margin-bottom: 6px;">
+                • Kasus Tuntas Dimodelkan: <strong id="rep-menu2-cases" style="color: #10B981;">0 / 4 Kasus</strong><br>
+                • Mengulang Pemodelan / Reset: <strong id="rep-menu2-resets">0 kali</strong>
+              </div>
+              <div style="background: #FFFBEB; border: 1.5px solid #FDE68A; border-radius: 8px; padding: 6px 10px; font-size: 11px; line-height: 1.35; color: #B45309;" id="rep-menu2-interpret">
+                Interpretasi: Sedang memproses analisis kemampuan formulasi visual...
+              </div>
+            </div>
+
+            <!-- Evaluasi Menu 3: Game Mario -->
+            <div class="report-eval-card" style="border-left: 6px solid #10B981;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <strong style="color: #059669; font-size: 13px;"><i class="fa-solid fa-gamepad"></i> 3. Game Petualangan Sekolah (Menu 3)</strong>
+                <span class="status-badge status-disetujui" id="rep-game-status">Tuntas</span>
+              </div>
+              <div style="font-size: 11.5px; color: #475569; line-height: 1.4; margin-bottom: 6px;">
+                • Skor Game: <strong id="rep-game-score" style="color: #059669;">0</strong> | Permata: <strong id="rep-game-gems">0</strong><br>
+                • Soal Game Benar: <strong id="rep-game-right" style="color: #10B981;">0</strong> | Salah: <strong id="rep-game-wrong" style="color: #EF4444;">0</strong>
+              </div>
+              <div style="background: #ECFDF5; border: 1.5px solid #A7F3D0; border-radius: 8px; padding: 6px 10px; font-size: 11px; line-height: 1.35; color: #047857;" id="rep-game-interpret">
+                Interpretasi: Sedang memproses analisis ketangkasan problem-solving...
+              </div>
+            </div>
+
+            <!-- Evaluasi Refleksi Diri & Rekomendasi -->
+            <div class="report-eval-card" style="border-left: 6px solid #8B5CF6;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <strong style="color: #7C3AED; font-size: 13px;"><i class="fa-solid fa-brain"></i> 4. Refleksi & Rekomendasi Belajar</strong>
+                <span class="status-badge status-disetujui" id="rep-ref-status">Selesai</span>
+              </div>
+              <div style="font-size: 11.5px; color: #475569; line-height: 1.4; margin-bottom: 6px;">
+                • Indeks Keyakinan Diri: <strong id="rep-ref-score" style="color: #7C3AED;">Sangat Baik</strong>
+              </div>
+              <div style="background: #F5F3FF; border: 1.5px solid #DDD6FE; border-radius: 8px; padding: 6px 10px; font-size: 11px; line-height: 1.35; color: #6D28D9;" id="rep-ref-interpret">
+                Interpretasi: Sedang memproses rekomendasi tindak lanjut...
+              </div>
+            </div>
+
+          </div>
+
+          <!-- ================================================================
+               PIAGAM SERTIFIKAT KELULUSAN DENGAN WARNA PASTEL & TABEL KETUNTASAN
+               ================================================================ -->
+          <div id="certificate-card-frame" style="background: linear-gradient(135deg, #FFFDF7 0%, #F5F3FF 50%, #ECFDF5 100%); border: 4.5px solid #F59E0B; border-radius: 22px; padding: 22px 26px; box-shadow: 0 10px 30px rgba(245, 158, 11, 0.2); position: relative; text-align: center; margin-top: 10px;">
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <span style="font-size: 32px;">🎓</span>
+              <div>
+                <span style="font-family: var(--font-body); font-size: 11px; font-weight: 800; letter-spacing: 2px; color: #D97706; text-transform: uppercase;">
+                  ARITHMASCHOOL ACADEMY • FASE E KELAS 10
+                </span>
+                <h3 style="font-family: var(--font-arcade); font-size: 22px; font-weight: 800; color: #1E293B; letter-spacing: 1px; margin: 2px 0;">
+                  SERTIFIKAT KELULUSAN DIGITAL
+                </h3>
+              </div>
+              <span style="font-size: 32px;">🦉</span>
+            </div>
+
+            <p style="font-size: 11.5px; font-weight: 700; color: #92400E; margin-bottom: 8px;">
+              Nomor Registrasi Resmi: <code id="cert-reg-no">AS-MATH/2026/089</code>
+            </p>
+
+            <p style="font-size: 12px; color: #475569; margin-bottom: 2px;">Diberikan dengan bangga dan predikat istimewa kepada:</p>
+            <h2 id="cert-student-name" style="font-family: var(--font-arcade); font-size: 24px; font-weight: 800; color: #0F172A; margin: 2px 0 8px 0; border-bottom: 2.5px solid #FBBF24; display: inline-block; padding: 0 28px;">
+              Nama Siswa
+            </h2>
+
+            <p id="cert-statement-p" style="font-size: 12px; color: #475569; max-width: 620px; margin: 0 auto 10px auto; line-height: 1.4;">
+              Telah dinyatakan <strong>LULUS & TUNTAS</strong> pada pembelajaran matematika materi <strong>Barisan & Deret Aritmatika</strong> dengan rincian ketuntasan kompetensi sebagai berikut:
+            </p>
+
+            <!-- TABEL KETUNTASAN PASTEL SESUAI PERMINTAAN USER -->
+            <table class="competency-table" id="cert-competency-table">
+              <thead>
+                <tr>
+                  <th style="width: 35px; text-align: center;">No</th>
+                  <th>Aspek Pembelajaran</th>
+                  <th style="width: 110px; text-align: center;">Capaian / Skor</th>
+                  <th style="width: 125px; text-align: center;">Status Ketuntasan</th>
+                  <th>Keterangan Pedagogis</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="text-align: center; font-weight: 800;">1</td>
+                  <td><strong>Penguatan Konsep (Menu 1)</strong><br><small style="color: #64748B;">Identifikasi Beda ($b$), Rumus $U_n$, dan Deret Gauss ($S_n$)</small></td>
+                  <td style="text-align: center; font-weight: 800; color: #10B981;" id="table-score-menu1">0 / 10 Soal</td>
+                  <td style="text-align: center;"><span class="status-badge" id="table-status-menu1">⏳ Sedang Berproses</span></td>
+                  <td id="table-desc-menu1">Mampu memahami karakteristik suku konstan dengan akurat.</td>
+                </tr>
+                <tr>
+                  <td style="text-align: center; font-weight: 800;">2</td>
+                  <td><strong>Pemodelan Mandiri 10 Suku (Menu 2)</strong><br><small style="color: #64748B;">Translasi 4 Kasus Visual Nyata ke Rumus Matematika</small></td>
+                  <td style="text-align: center; font-weight: 800; color: #10B981;" id="table-score-menu2">0 / 4 Kasus</td>
+                  <td style="text-align: center;"><span class="status-badge" id="table-status-menu2">⏳ Berproses</span></td>
+                  <td id="table-desc-menu2">Berhasil menyelaraskan objek visual nyata 10 baris dengan rumus.</td>
+                </tr>
+                <tr>
+                  <td style="text-align: center; font-weight: 800;">3</td>
+                  <td><strong>Game Petualangan Kontekstual (Menu 3)</strong><br><small style="color: #64748B;">Problem Solving Menuju Sekolah ArithmaSchool</small></td>
+                  <td style="text-align: center; font-weight: 800; color: #10B981;" id="table-score-menu3">0 / 10 Soal</td>
+                  <td style="text-align: center;"><span class="status-badge" id="table-status-menu3">⏳ Belum Main</span></td>
+                  <td id="table-desc-menu3">Tangkas memecahkan persoalan matematika dalam simulasi game.</td>
+                </tr>
+                <tr>
+                  <td style="text-align: center; font-weight: 800;">4</td>
+                  <td><strong>Jurnal Refleksi Mandiri</strong><br><small style="color: #64748B;">Kesadaran Metakognitif & Evaluasi Belajar</small></td>
+                  <td style="text-align: center; font-weight: 800; color: #8B5CF6;" id="table-score-ref">0%</td>
+                  <td style="text-align: center;"><span class="status-badge" id="table-status-ref">⏳ Belum Mengisi</span></td>
+                  <td id="table-desc-ref">Mempunyai kesadaran metakognitif yang matang dalam belajar.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- Footer Tanda Tangan & Tanggal Terbit -->
+            <div style="display: flex; justify-content: space-around; align-items: center; border-top: 1.5px dashed #FCD34D; padding-top: 10px; margin-top: 8px;">
+              <div>
+                <small style="color: #64748B; font-size: 11px;">Tanggal Kelulusan:</small><br>
+                <strong id="cert-date-label" style="font-size: 12px;">19 November 2026</strong>
+              </div>
+              <div>
+                <span style="font-size: 22px;">🦉</span><br>
+                <small style="color: #64748B; font-size: 11px;">Guru Pengampu Matematika:</small><br>
+                <strong style="font-size: 12px;">Admin Gaussy, M.Pd.</strong>
+              </div>
+            </div>
+
+            <!-- Tombol Aksi Akhir Laporan Belajar & Sertifikat -->
+            <div style="margin-top: 18px; display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;">
+              <button class="arcade-btn btn-secondary btn-sm" onclick="downloadCertificateImage()">
+                <i class="fa-solid fa-download"></i> UNDUH SERTIFIKAT (GAMBAR PNG)
+              </button>
+              <button class="arcade-btn btn-mint btn-sm" onclick="navigateTo(10)">
+                PODIUM KELULUSAN <i class="fa-solid fa-trophy"></i>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Footer Navigasi Halaman -->
+      <footer class="page-footer-nav">
+        <button class="arcade-btn btn-secondary btn-sm" onclick="navigateTo(5)">
+          <i class="fa-solid fa-house"></i> KEMBALI KE MENU UTAMA
+        </button>
+
+        <!-- Kontrol Game Petualangan: di TENGAH saat bermain game (kirim input ke iframe game) -->
+        <div id="game-footer-controls" style="display: none; gap: 8px; align-items: center;">
+          <button class="game-pad-btn" data-gkey="l" aria-label="Mundur (Kiri)">◀</button>
+          <button class="game-pad-btn" data-gkey="r" aria-label="Maju (Kanan)">▶</button>
+          <button class="game-pad-btn" data-gkey="j" aria-label="Lompat">▲</button>
+          <button class="game-pad-btn" data-gkey="k" aria-label="Serang">⚔</button>
+        </div>
+      </footer>
+
+    </div>
+
+  </div>
+</section>

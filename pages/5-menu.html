@@ -1,0 +1,120 @@
+<!-- ========================================================================
+     HALAMAN 5: MENU UTAMA (SISWA) — 3 KARTU FITUR DENGAN FRAME PERSIS GAMBAR
+     ======================================================================== -->
+<section id="page-5" class="screen-page">
+  <div class="page-content-wrapper" style="justify-content: space-between;">
+    
+    <!-- Bar Navigasi Atas Menu Utama -->
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+      
+      <!-- WIDGET PROFIL SISWA (POJOK KIRI ATAS) -->
+      <div class="student-profile-widget" onclick="navigateTo('profile')" title="Klik untuk membuka Halaman Profil, ganti avatar, nama, password, dan lihat progress belajar">
+        <div class="profile-avatar-circle" id="menu-avatar-display">🦉</div>
+        <div class="profile-info-block">
+          <div class="profile-name-row">
+            <span class="profile-name-text" id="menu-profile-name">Petualang</span>
+            <span class="profile-edit-badge"><i class="fa-solid fa-pen-to-square"></i> Profil & Progress</span>
+          </div>
+          <div class="profile-role-text">
+            <i class="fa-solid fa-graduation-cap"></i> Siswa Fase E • <span id="menu-progress-badge" class="progress-pill-inline">Progress: 0%</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <button class="arcade-btn btn-secondary btn-sm" onclick="showFeatureInfoModal()" title="Lihat penjelasan lengkap alur 3 menu utama">
+          <i class="fa-solid fa-circle-question"></i> PANDUAN MENU
+        </button>
+        <button class="arcade-btn btn-danger btn-sm" onclick="handleLogout()" title="Keluar menuju halaman login">
+          <i class="fa-solid fa-right-from-bracket"></i> KELUAR
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Sapaan Sambutan Siswa -->
+    <div style="margin-bottom: 6px;">
+      <h2 id="student-welcome-title" style="font-family: var(--font-arcade); font-size: 21px; font-weight: 700; color: var(--dark-outline); line-height: 1.2;">
+        Halo, Murid Hebat! 🌟
+      </h2>
+      <p style="font-size: 12px; font-weight: 700; color: var(--text-muted);">
+        Pilih salah satu kartu petualangan di bawah untuk memulai belajarmu!
+      </p>
+    </div>
+
+    <!-- 3 KARTU FITUR UTAMA PERSIS REFERENSI GAMBAR PENGGUNA -->
+    <div class="three-features-grid">
+      
+      <!-- KARTU 1: PENGUATAN KONSEP (FRAME EMAS) -->
+      <div class="ref-card card-konsep" onclick="navigateTo(7)">
+        <div class="ref-img-frame">
+          <img id="img-konsep" src="assets/modul1_konsep.jpg" alt="Kartu Penguatan Pemahaman Konsep" 
+               onerror="this.src='assets/reference_cards.png';">
+          <div class="ref-badge badge-gold">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> MODUL 1
+          </div>
+        </div>
+
+        <h3 class="ref-card-title">KARTU PENGUATAN PEMAHAMAN KONSEP</h3>
+        <p class="ref-card-desc">
+          Jelajahi penemuan terbimbing pola bilangan, rahasia beda ($b$), rumus suku ke-$n$ ($U_n$), hingga pembuktian trik Gauss deret ($S_n$).
+        </p>
+        <button class="ref-capsule-btn ref-btn-gold" onclick="event.stopPropagation(); navigateTo(7);">
+          📖 BUKA PINTU AJAIB ✨
+        </button>
+      </div>
+
+      <!-- KARTU 2: TANTANGAN & PEMODELAN (FRAME RUBY) -->
+      <div class="ref-card card-tantangan" onclick="navigateTo(8)">
+        <span id="lock-badge-menu2" style="display:inline-block; position:absolute; top:8px; right:8px; background:#E11D48; color:#FFF; border-radius:50%; width:30px; height:30px; text-align:center; line-height:30px; font-size:14px; box-shadow:0 2px 0 rgba(0,0,0,0.25); z-index:5;">🔒</span>
+        <div class="ref-img-frame">
+          <img id="img-tantangan" src="assets/modul2_tantangan.jpg" alt="Kartu Tantangan" 
+               onerror="this.src='assets/reference_cards.png';">
+          <div class="ref-badge badge-ruby">
+            <i class="fa-solid fa-fire"></i> MODUL 2
+          </div>
+        </div>
+
+        <h3 class="ref-card-title">KARTU TANTANGAN</h3>
+        <p class="ref-card-desc">
+          Uji kemampuan analisismu melalui arena simulasi pemodelan objek nyata dan taklukkan tantangan berhitung barisan aritmatika!
+        </p>
+        <button class="ref-capsule-btn ref-btn-ruby" onclick="event.stopPropagation(); navigateTo(8);">
+          🔥 MASUK TANTANGAN 🔥
+        </button>
+      </div>
+
+      <!-- KARTU 3: ASESMEN DAN REFLEKSI (FRAME UNGU) -->
+      <div class="ref-card card-asesmen" onclick="navigateTo(9)" style="position:relative;">
+        <span id="lock-badge-menu3" style="display:inline-block; position:absolute; top:8px; right:8px; background:#8B5CF6; color:#FFF; border-radius:50%; width:30px; height:30px; text-align:center; line-height:30px; font-size:14px; box-shadow:0 2px 0 rgba(0,0,0,0.25); z-index:5;">🔒</span>
+        <div class="ref-img-frame">
+          <img id="img-asesmen" src="assets/modul3_asesmen.jpg" alt="Kartu Asesmen dan Refleksi" 
+               onerror="this.src='assets/reference_cards.png';">
+          <div class="ref-badge badge-purple">
+            <i class="fa-solid fa-scroll"></i> MODUL 3
+          </div>
+        </div>
+
+        <h3 class="ref-card-title">KARTU ASESMEN DAN REFLEKSI</h3>
+        <p class="ref-card-desc">
+          Selesaikan game petualangan sekolah, buka buku soal kontekstual, isi jurnal refleksi, dan raih sertifikat kelulusan resmi!
+        </p>
+        <button class="ref-capsule-btn ref-btn-purple" onclick="event.stopPropagation(); navigateTo(9);">
+          📜 MULAI ASESMEN 📜
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Maskot 3D Gaussy Memberi Petunjuk di Bagian Bawah -->
+    <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 6px;">
+      <div class="gaussy-mascot-3d-wrap sm" style="width: 48px; height: 48px;" onclick="playGaussyGreeting()">
+        <img src="assets/gaussy_mascot.png" class="gaussy-3d-img" alt="Gaussy Mini">
+      </div>
+      <span style="font-size: 11.5px; font-weight: 800; color: var(--dark-outline); background: rgba(255,255,255,0.92); border: 2.5px solid var(--dark-outline); padding: 4px 14px; border-radius: 999px; box-shadow: 0 3px 0 var(--dark-shadow);">
+        🦉 Gaussy: "Selesaikan 3 modul di atas untuk membuka Sertifikat Kelulusan Resmi ArithmaSchool!"
+      </span>
+    </div>
+
+  </div>
+</section>

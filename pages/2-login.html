@@ -1,0 +1,81 @@
+<!-- ========================================================================
+     HALAMAN 2: HALAMAN LOGIN (GERBANG SEKOLAH)
+     ======================================================================== -->
+<section id="page-2" class="screen-page">
+  <div class="page-content-wrapper" style="max-width: 800px; margin: auto; justify-content: center;">
+    
+    <div class="arcade-panel">
+      
+      <div class="page-header-banner">
+        <div class="page-title-box">
+          <h2><i class="fa-solid fa-door-open" style="color: #4EA8DE;"></i> Gerbang Sekolah ArithmaSchool</h2>
+          <p>Tunjukkan kartu pelajarmu atau masuk ke ruang guru untuk melanjutkan!</p>
+        </div>
+        <button class="arcade-btn btn-secondary btn-sm" onclick="navigateTo(1)" title="Kembali ke Halaman Sampul">
+          <i class="fa-solid fa-arrow-left"></i> KEMBALI
+        </button>
+      </div>
+
+      <div id="login-alert" class="arcade-alert alert-warning">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        <span id="login-alert-text">Pesan notifikasi</span>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 220px; gap: 24px; align-items: center;">
+        
+        <div>
+          <div class="arcade-form-group">
+            <label class="arcade-label" for="login-username">
+              <i class="fa-solid fa-user"></i> Nama Lengkap Siswa:
+            </label>
+            <input type="text" id="login-username" class="arcade-input" placeholder="Ketik nama lengkapmu di sini..." autocomplete="off">
+          </div>
+
+          <div class="arcade-form-group">
+            <label class="arcade-label" for="login-password">
+              <i class="fa-solid fa-key"></i> Kata Sandi (Password):
+            </label>
+            <div class="password-input-wrap">
+              <input type="password" id="login-password" class="arcade-input" placeholder="Masukkan password..." autocomplete="off">
+              <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('login-password', this)" title="Lihat/Sembunyikan Password">
+                <i class="fa-solid fa-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 12px;">
+            <button class="arcade-btn btn-mint" onclick="handleStudentLogin()">
+              <i class="fa-solid fa-right-to-bracket"></i> MASUK SEBAGAI SISWA
+            </button>
+            
+            <div style="text-align: center; background: #FFF9E6; border: 2px dashed #FFD152; border-radius: 12px; padding: 7px 12px; font-size: 12px; font-weight: 700; color: #634A00; line-height: 1.4;">
+              <i class="fa-solid fa-circle-question" style="color: #FF9F1C; margin-right: 4px;"></i> Belum memiliki akun? Silakan klik tombol <strong>daftar sebagai siswa</strong> di bawah ini! 👇
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <button class="arcade-btn btn-yellow btn-sm" onclick="navigateTo(3)">
+                <i class="fa-solid fa-user-plus"></i> DAFTAR SEBAGAI SISWA
+              </button>
+              <button class="arcade-btn btn-lavender btn-sm" onclick="navigateTo(4)">
+                <i class="fa-solid fa-chalkboard-user"></i> MASUK SEBAGAI GURU
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+          <div class="gaussy-speech-bubble" style="font-size: 12px; margin-bottom: 8px;">
+            "Tunjukkan kartu pelajarmu dulu ya! Kalau murid baru, daftar dulu di samping." 🦉
+          </div>
+          <div class="gaussy-mascot-3d-wrap" onclick="playGaussyGreeting()" title="Klik Gaussy!">
+            <img src="assets/gaussy_mascot.png" class="gaussy-3d-img" alt="Gaussy Penjaga Gerbang">
+            <div class="wand-sparkle sparkle-1">✨</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,179 @@
+/* ==========================================================================
+   DESAIN TOMBOL ARCADE, TOMBOL KAPSUL, DAN TOMBOL IKON
+   ========================================================================== */
+
+/* Blok Tombol Arcade-Styled (Tebal, Ceria, Kartun) */
+.arcade-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 14px;
+  border: 3.5px solid var(--dark-outline);
+  font-family: var(--font-arcade);
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #FFFFFF;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.08s ease, box-shadow 0.08s ease, filter 0.15s ease;
+  box-shadow: 0 5px 0 var(--dark-shadow);
+  position: relative;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.arcade-btn:hover {
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+  box-shadow: 0 7px 0 var(--dark-shadow);
+}
+
+.arcade-btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 var(--dark-shadow);
+}
+
+.arcade-btn i { font-size: 15px; }
+
+/* Varian Warna Tombol Arcade */
+.btn-mint { background-color: var(--pastel-mint); }
+.btn-blue { background-color: var(--pastel-blue); }
+.btn-lavender { background-color: var(--pastel-lavender); }
+.btn-peach { background-color: var(--pastel-peach); }
+.btn-pink { background-color: var(--pastel-pink); }
+.btn-yellow { background-color: var(--pastel-yellow); color: var(--dark-outline) !important; }
+.btn-danger { background-color: #EF476F; }
+.btn-secondary { background-color: #78909C; }
+
+/* Ukuran Tombol */
+.arcade-btn.btn-sm {
+  padding: 7px 15px;
+  font-size: 12px;
+  border-width: 3px;
+  box-shadow: 0 4px 0 var(--dark-shadow);
+}
+
+.arcade-btn.btn-lg {
+  padding: 14px 34px;
+  font-size: 18px;
+  border-width: 4px;
+  box-shadow: 0 7px 0 var(--dark-shadow);
+}
+
+/* Tombol Ikon Bulat (Top Controls: Audio, Fullscreen, BGM) */
+.icon-round-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 3px solid var(--dark-outline);
+  box-shadow: 0 4px 0 var(--dark-shadow);
+  color: var(--dark-outline);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  transition: all 0.12s ease;
+  position: relative;
+}
+
+.icon-round-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 var(--dark-shadow);
+  background: var(--pastel-yellow-light);
+}
+
+.icon-round-btn:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 var(--dark-shadow);
+}
+
+.icon-round-btn.muted {
+  background: #FEE2E2 !important;
+  color: #DC2626 !important;
+  border-color: #DC2626 !important;
+}
+
+.icon-round-btn.active-bgm {
+  background: #D1FAE5 !important;
+  color: #059669 !important;
+  border-color: #059669 !important;
+  box-shadow: 0 4px 0 #047857 !important;
+  animation: pulseBGM 1.6s infinite ease-in-out;
+}
+
+@keyframes pulseBGM {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+/* Tombol Kapsul Mewah (Kartu Fitur Utama) */
+.ref-capsule-btn {
+  width: 92%;
+  border-radius: 999px;
+  border: 3.5px solid var(--dark-outline);
+  font-family: var(--font-arcade);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: #FFFFFF;
+  padding: 8px 16px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-transform: uppercase;
+  transition: all 0.12s ease;
+  box-shadow: 0 5px 0 var(--dark-shadow);
+  white-space: nowrap;
+}
+
+.ref-btn-gold {
+  background: linear-gradient(180deg, #FDE68A 0%, #D97706 100%);
+  color: #451A03;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.6);
+}
+.ref-btn-gold:hover { filter: brightness(1.1); transform: translateY(-2px); box-shadow: 0 7px 0 var(--dark-shadow); }
+
+.ref-btn-ruby {
+  background: linear-gradient(180deg, #FDA4AF 0%, #E11D48 100%);
+  color: #FFFFFF;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+}
+.ref-btn-ruby:hover { filter: brightness(1.1); transform: translateY(-2px); box-shadow: 0 7px 0 var(--dark-shadow); }
+
+.ref-btn-purple {
+  background: linear-gradient(180deg, #DDD6FE 0%, #7C3AED 100%);
+  color: #FFFFFF;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+}
+.ref-btn-purple:hover { filter: brightness(1.1); transform: translateY(-2px); box-shadow: 0 7px 0 var(--dark-shadow); }
+
+.ref-capsule-btn:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 var(--dark-shadow);
+}
+
+/* Tombol Tab Kasus Studio Arsitek */
+.case-tab-btn {
+  padding: 6px 14px;
+  border-radius: 12px;
+  border: 2.5px solid var(--dark-outline);
+  font-family: var(--font-arcade);
+  font-size: 11.5px;
+  font-weight: 700;
+  cursor: pointer;
+  background: #FFFFFF;
+  transition: all 0.15s ease;
+}
+.case-tab-btn.active {
+  background: var(--pastel-yellow);
+  box-shadow: 0 3px 0 var(--dark-shadow);
+  transform: translateY(-2px);
+}
