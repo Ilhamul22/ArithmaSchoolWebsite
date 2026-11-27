@@ -1099,3 +1099,484 @@
   transform: translateY(2px);
   box-shadow: 0 1px 0 var(--dark-shadow);
 }
+
+/* ==========================================================================
+   REVISI RESPONSIF KOMPONEN & PER HALAMAN (TABLET & HP <= 1024px)
+   Laptop / Desktop (> 1024px) TIDAK TERSENTUH
+   ========================================================================== */
+@media (max-width: 1024px) {
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  .ref-img-frame img {
+    height: 100%;
+  }
+
+  .arcade-panel {
+    height: auto !important;
+    max-height: none !important;
+    padding: clamp(12px, 2.5vw, 20px) !important;
+    width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  /* Area tombol sentuh minimal 44x44px dan teks tombol boleh wrap rapi */
+  .arcade-btn,
+  .arcade-btn.btn-sm,
+  .arcade-btn.btn-lg,
+  .ref-capsule-btn,
+  .avatar-preset-item,
+  .password-toggle-btn,
+  .card-choice-btn {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .arcade-btn,
+  .ref-capsule-btn {
+    white-space: normal;
+    text-align: center;
+    line-height: 1.25;
+    font-size: clamp(0.76rem, 2.2vw, 0.92rem);
+    padding: 10px 14px;
+  }
+
+  .arcade-btn.btn-lg {
+    font-size: clamp(0.95rem, 2.8vw, 1.15rem);
+    padding: 12px 24px;
+  }
+
+  /* Cegah auto-zoom pada input HP (min 16px) */
+  .arcade-input,
+  textarea.arcade-input,
+  select.arcade-input {
+    width: 100%;
+    font-size: 16px !important;
+    min-height: 44px;
+    padding: 10px 12px;
+  }
+
+  /* Menu Utama: Tablet 2 kolom */
+  .three-features-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 14px !important;
+  }
+
+  /* Menu 1: Grid kartu tablet 2 kolom */
+  .pastel-cards-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  /* Menu 2: 4 kartu kasus tablet 2 kolom & workspace bertumpuk vertikal */
+  .case-cards-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  #menu2-workspace {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .architect-stage {
+    max-height: none !important;
+    overflow-y: visible !important;
+  }
+
+  /* Rumus matematika panjang tidak meluber */
+  .katex-display,
+  #architect-feedback-box,
+  #zoom-question-text,
+  #zoom-feedback-box {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+  .katex-display {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 4px 0;
+  }
+
+  /* Menu 3: Landing 2 kolom di tablet */
+  #menu3-landing-options {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Halaman 9 (Game aktif di tablet/HP): izinkan panel tumbuh atau isi dvh */
+  #page-9 .arcade-panel {
+    min-height: calc(100dvh - 105px);
+  }
+  #subtab-1-content {
+    min-height: 62dvh;
+  }
+  #game-iframe-container {
+    min-height: 58dvh;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Cover */
+  .cover-bubble-title {
+    font-size: clamp(1.75rem, 8.5vw, 2.5rem) !important;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+  .cover-sub-badge span {
+    font-size: clamp(0.82rem, 3.6vw, 1.05rem) !important;
+  }
+  .cover-topic-pill,
+  .cover-phase-tag {
+    font-size: clamp(0.65rem, 2.5vw, 0.78rem);
+    max-width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+  .gaussy-speech-bubble {
+    max-width: 100%;
+    font-size: clamp(0.75rem, 2.8vw, 0.86rem) !important;
+    padding: 8px 14px !important;
+  }
+
+  /* Halaman Login, Register, Guru, Waiting, Profil jadi 1 kolom bertumpuk */
+  #page-2 div[style*="grid-template-columns: 1fr 220px"],
+  #page-4 div[style*="grid-template-columns: 1fr 180px"],
+  #page-waiting div[style*="grid-template-columns: 180px 1fr"],
+  #page-profile div[style*="grid-template-columns: 1fr 1.25fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  #page-2 div[style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  #page-2 .gaussy-mascot-3d-wrap,
+  #page-4 .gaussy-mascot-3d-wrap,
+  #page-waiting .gaussy-mascot-3d-wrap {
+    width: 96px !important;
+    height: 96px !important;
+  }
+
+  #page-3 div[style*="justify-content: flex-end"] {
+    flex-wrap: wrap;
+    justify-content: stretch !important;
+  }
+  #page-3 div[style*="justify-content: flex-end"] .arcade-btn {
+    flex: 1 1 140px;
+  }
+
+  /* Menu Utama: Header profil & tombol Panduan/Keluar jadi baris terpisah, 1 kolom kartu */
+  #page-5 .page-content-wrapper > div:first-child {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+    margin-bottom: 10px !important;
+  }
+
+  #page-5 .student-profile-widget {
+    width: 100%;
+    min-width: 0;
+  }
+  #page-5 .profile-name-row {
+    flex-wrap: wrap;
+    gap: 4px 8px;
+  }
+  #page-5 .profile-role-text {
+    line-height: 1.4;
+  }
+
+  #page-5 .page-content-wrapper > div:first-child > div:last-child {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px !important;
+  }
+  #page-5 .page-content-wrapper > div:first-child > div:last-child .arcade-btn {
+    flex: 1 1 140px;
+  }
+
+  #student-welcome-title {
+    font-size: clamp(1.05rem, 4.2vw, 1.3rem) !important;
+  }
+
+  .three-features-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* Badge terkunci dan card tidak keluar layar */
+  .ref-card {
+    overflow: hidden;
+    max-width: 100%;
+  }
+  #lock-badge-menu2,
+  #lock-badge-menu3 {
+    top: 8px;
+    right: 8px;
+  }
+
+  /* Menu 1: Modal soal maksimal 90dvh + scroll internal */
+  .card-zoom-modal-backdrop {
+    padding: calc(10px + env(safe-area-inset-top)) 10px calc(10px + env(safe-area-inset-bottom)) 10px;
+  }
+  .card-zoom-card {
+    max-height: 90dvh;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .card-zoom-banner {
+    flex-shrink: 0;
+    padding: 12px 14px;
+  }
+  .card-zoom-banner button {
+    min-width: 44px;
+    min-height: 44px;
+    width: 44px !important;
+    height: 44px !important;
+  }
+  .card-zoom-body {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 14px;
+  }
+  .card-question-text {
+    font-size: clamp(0.9rem, 3.2vw, 1.05rem);
+  }
+  .card-choice-btn {
+    font-size: clamp(0.84rem, 2.8vw, 0.95rem);
+    padding: 10px 12px;
+    overflow-wrap: anywhere;
+  }
+
+  /* Menu 1: Footer navigasi selalu terlihat di HP */
+  #page-7 .page-footer-nav {
+    position: sticky;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.97);
+    padding: 10px 4px calc(8px + env(safe-area-inset-bottom));
+    z-index: 15;
+  }
+
+  /* Menu 2: 10 pengatur baris jadi 2 kolom, rumus aman, tombol tidak menutupi konten */
+  .rows-adjust-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .rows-adjust-grid button {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  #menu2-workspace div[style*="grid-template-columns: 1fr 1fr"] > * {
+    min-width: 0;
+  }
+
+  /* Menu 3: 3 kartu landing 1 kolom, jurnal & laporan & sertifikat responsif */
+  #menu3-landing-screen {
+    padding: 12px 4px !important;
+  }
+  #menu3-landing-options {
+    grid-template-columns: 1fr !important;
+  }
+  #menu3-landing-options .case-select-card {
+    min-height: auto;
+    padding: 16px 14px !important;
+  }
+  #subtab-2-content > div {
+    padding: 12px !important;
+  }
+  #subtab-2-content div[style*="justify-content: space-between"] {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  #form-student-reflection span[style*="min-width: 250px"] {
+    min-width: 0 !important;
+    width: 100%;
+  }
+  #form-student-reflection label {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  #report-cards-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Sertifikat muat lebar HP */
+  #certificate-card-frame {
+    padding: 14px 12px !important;
+    overflow: hidden;
+  }
+  #certificate-card-frame > div:first-child {
+    gap: 8px;
+  }
+  #certificate-card-frame h3 {
+    font-size: clamp(1rem, 4.2vw, 1.35rem) !important;
+  }
+  #cert-student-name {
+    font-size: clamp(1.15rem, 4.8vw, 1.45rem) !important;
+    padding: 0 12px !important;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+  #cert-competency-table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Header Game Halaman 9 di HP */
+  #game-page-header {
+    flex-wrap: wrap !important;
+  }
+  #game-page-header > div:last-child {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  #game-page-header > div:last-child .arcade-btn {
+    flex: 1 1 130px;
+    white-space: normal !important;
+  }
+
+  /* Halaman Guru: tabel dibungkus overflow-x: auto */
+  .teacher-table-wrapper {
+    max-height: none;
+    overflow-x: auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Modal Global & Tambah Siswa */
+  .arcade-modal-card {
+    max-height: 90dvh;
+    overflow-y: auto;
+    padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pastel-cards-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .case-cards-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .case-select-card {
+    min-height: auto;
+    padding: 16px 14px;
+  }
+
+  #page-waiting div[style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Statistik Guru jadi 1 kolom di HP kecil */
+  #page-6 div[style*="grid-template-columns: repeat(3, 1fr)"] {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+
+  /* Daftar siswa tampil sebagai kartu per siswa di HP kecil */
+  .teacher-table,
+  .teacher-table tbody,
+  .teacher-table tr,
+  .teacher-table td {
+    display: block;
+    width: 100%;
+  }
+  .teacher-table thead {
+    display: none;
+  }
+  .teacher-table tr {
+    padding: 12px;
+    border-bottom: 2.5px solid var(--dark-outline);
+    background: #FFFFFF;
+  }
+  .teacher-table tr:nth-child(even) {
+    background: #F8FAFC;
+  }
+  .teacher-table td {
+    border: none;
+    padding: 3px 0;
+    text-align: left !important;
+  }
+  .teacher-table td:first-child::before {
+    content: "No. ";
+    color: var(--text-muted);
+  }
+  .teacher-table td:last-child {
+    margin-top: 6px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .teacher-table td:last-child .arcade-btn {
+    flex: 1 1 110px;
+  }
+
+  /* Menu Utama banner Gaussy bawah di HP kecil */
+  #page-5 .page-content-wrapper > div:last-child {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  /* Halaman 10 Kelulusan tombol bertumpuk */
+  #page-10 div[style*="display: flex; gap: 10px; justify-content: center;"] {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  /* Panggung & Sertifikat: pastikan tanda tangan wrap rapi */
+  #certificate-card-frame > div[style*="justify-content: space-around"] {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+}
+
+/* Mode Fullscreen / Landscape Game di Perangkat Sentuh */
+body.touch-device #game-footer-controls {
+  display: none !important;
+}
+
+#game-iframe-container.game-pseudo-fullscreen {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100dvw !important;
+  height: 100dvh !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  z-index: 99999 !important;
+  background: #3B1D7A !important;
+}
+
+@media (max-width: 1024px) and (orientation: landscape) and (max-height: 520px) {
+  .top-utility-bar {
+    padding: 4px calc(10px + env(safe-area-inset-right)) 4px calc(10px + env(safe-area-inset-left));
+  }
+  .top-controls .icon-round-btn {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    min-height: 36px;
+  }
+  #page-9 .arcade-panel {
+    padding: 6px !important;
+  }
+  #page-9 #game-page-header {
+    margin-bottom: 4px !important;
+  }
+  #page-9 #game-page-header h2 {
+    font-size: 0.9rem !important;
+  }
+  #subtab-1-content,
+  #game-iframe-container {
+    min-height: calc(100dvh - 110px) !important;
+  }
+}

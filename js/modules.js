@@ -1364,6 +1364,7 @@ function resetMenu2WithConfirmation() {
 // Kembali ke layar 3 pilihan Menu 3
 function showMenu3Landing() {
   playSFX('click');
+  if (typeof exitGameMobileFullscreen === 'function') exitGameMobileFullscreen();
   const landing = document.getElementById('menu3-landing-screen');
   if (landing) landing.style.display = 'block';
   const insideHeader = document.getElementById('menu3-inside-header');
@@ -1488,9 +1489,54 @@ function initMenu3Assessment() {
       if (!ev.data) return;
       if (ev.data.type === 'ARITHMASCHOOL_GAME_UPDATE' || ev.data.type === 'GAUSSY_GAME_RESULT') {
         onAssessmentGameResult(ev.data);
+      } else if (ev.data.type === 'ARITHMA_GAME_FULLSCREEN') {
+        setGameMobileFullscreen(!!ev.data.active);
       }
     });
   }
+}
+
+function isTouchMobileDevice() {
+  return (
+    (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) ||
+    ('ontouchstart' in window && window.matchMedia && window.matchMedia('(hover: none)').matches)
+  );
+}
+
+function syncTouchBodyClass() {
+  document.body.classList.toggle('touch-device', isTouchMobileDevice());
+}
+syncTouchBodyClass();
+window.addEventListener('resize', syncTouchBodyClass);
+
+function setGameMobileFullscreen(active) {
+  const wrap = document.getElementById('game-iframe-container');
+  if (!wrap) return;
+  if (active && isTouchMobileDevice()) {
+    wrap.classList.add('game-pseudo-fullscreen');
+  } else {
+    wrap.classList.remove('game-pseudo-fullscreen');
+  }
+}
+
+function exitGameMobileFullscreen() {
+  setGameMobileFullscreen(false);
+  const frame = document.getElementById('assessment-game-frame');
+  if (frame && frame.contentWindow) {
+    try { frame.contentWindow.postMessage({ type: 'ARITHMA_EXIT_GAME' }, '*'); } catch (e) {}
+  }
+  try {
+    if (screen.orientation && typeof screen.orientation.unlock === 'function') {
+      screen.orientation.unlock();
+    }
+  } catch (e) {}
+  try {
+    const fsEl = document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement;
+    if (fsEl) {
+      const ex = document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen;
+      if (ex) ex.call(document);
+    }
+  } catch (e) {}
 }
 
 function reloadAssessmentGame() {
@@ -2763,6 +2809,9 @@ function saveProfileChangesFromPage() {
   if (typeof origNavigate === 'function' && !window.__arithmaPadNavWrapped) {
     window.__arithmaPadNavWrapped = true;
     window.navigateTo = function(page) {
+      if (page !== 9 && typeof exitGameMobileFullscreen === 'function') {
+        exitGameMobileFullscreen();
+      }
       const r = origNavigate.apply(this, arguments);
       if (page === 9) setTimeout(bindGamePad, 100);
       return r;

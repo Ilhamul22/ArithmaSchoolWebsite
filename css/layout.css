@@ -222,38 +222,6 @@
   align-items: center;
   gap: 6px;
 }
-/* Penyesuaian Layout untuk Layar HP */
-@media (max-width: 768px) {
-  #app-viewport {
-    height: auto !important;
-    min-height: 100vh !important;
-    overflow-y: auto !important;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .top-utility-bar {
-    position: relative;
-    top: 0;
-    left: 0;
-    right: 0;
-    padding: 10px 14px;
-    background: rgba(255, 255, 255, 0.95);
-    border-bottom: 2.5px solid var(--dark-outline);
-  }
-
-  .logo-badge {
-    font-size: 11px;
-    padding: 4px 10px;
-  }
-
-  .screen-page {
-    position: relative;
-    min-height: calc(100vh - 60px);
-    height: auto;
-    padding: 16px 14px 40px 14px;
-    overflow-y: visible;
-  }
-}
 /* Penyesuaian Responsif Layar Laptop Standar & Layar Pendek agar Tombol Tidak Terpotong */
 @media (max-height: 720px) {
   .cover-bubble-title {
@@ -268,5 +236,203 @@
   }
   .screen-page {
     padding: 56px 20px 16px 20px !important;
+  }
+}
+
+/* ==========================================================================
+   REVISI RESPONSIF LAYAR TABLET & HP (KHUSUS <= 1024px, LAPTOP >1024px UTUH)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  html, body {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 100dvh !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #app-viewport {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 100dvh !important;
+    overflow-x: hidden !important;
+    overflow-y: visible !important;
+    background-attachment: scroll;
+  }
+
+  .top-utility-bar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: calc(8px + env(safe-area-inset-top)) calc(14px + env(safe-area-inset-right)) 8px calc(14px + env(safe-area-inset-left));
+    background: rgba(255, 255, 255, 0.94);
+    border-bottom: 2.5px solid var(--dark-outline);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    pointer-events: auto;
+    gap: 8px;
+  }
+
+  .logo-badge {
+    font-size: clamp(0.75rem, 2.4vw, 0.92rem);
+    padding: 5px 12px;
+    gap: 6px;
+    max-width: calc(100% - 108px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .logo-badge .badge-icon {
+    font-size: clamp(0.85rem, 2.6vw, 1rem);
+    flex-shrink: 0;
+  }
+
+  .top-controls {
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .top-controls .icon-round-btn {
+    min-width: 44px;
+    min-height: 44px;
+    width: 44px;
+    height: 44px;
+    font-size: 15px;
+  }
+
+  /* Toast diletakkan di bawah tengah pada layar kecil agar tidak menutupi tombol header */
+  .audio-toast {
+    position: fixed;
+    top: auto;
+    bottom: calc(14px + env(safe-area-inset-bottom));
+    left: 50%;
+    right: auto;
+    max-width: calc(100vw - 24px);
+    transform: translateX(-50%) translateY(16px);
+    font-size: clamp(0.75rem, 2.5vw, 0.85rem);
+    text-align: center;
+  }
+
+  .audio-toast.show {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .screen-page {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: calc(100dvh - 63px) !important;
+    padding: 16px calc(16px + env(safe-area-inset-right)) calc(24px + env(safe-area-inset-bottom)) calc(16px + env(safe-area-inset-left)) !important;
+    overflow-x: hidden !important;
+    overflow-y: visible !important;
+  }
+
+  .page-content-wrapper {
+    height: auto !important;
+    min-height: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    justify-content: flex-start !important;
+  }
+
+  #page-1 .page-content-wrapper,
+  #page-10 .page-content-wrapper {
+    min-height: calc(100dvh - 104px) !important;
+    justify-content: center !important;
+  }
+
+  .page-header-banner {
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .page-title-box {
+    flex: 1 1 220px;
+    min-width: 0;
+  }
+
+  .page-title-box h2 {
+    font-size: clamp(1rem, 3.2vw, 1.3rem);
+    flex-wrap: wrap;
+    overflow-wrap: anywhere;
+  }
+
+  .page-title-box p {
+    font-size: clamp(0.78rem, 2.2vw, 0.88rem);
+    overflow-wrap: anywhere;
+  }
+
+  .content-box-scrollable {
+    flex: initial !important;
+    overflow-y: visible !important;
+    padding-right: 0 !important;
+  }
+
+  .page-footer-nav {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-top: 12px;
+    margin-top: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .screen-page {
+    min-height: calc(100dvh - 61px) !important;
+    padding: 12px calc(12px + env(safe-area-inset-right)) calc(20px + env(safe-area-inset-bottom)) calc(12px + env(safe-area-inset-left)) !important;
+  }
+
+  .top-utility-bar {
+    padding: calc(6px + env(safe-area-inset-top)) calc(10px + env(safe-area-inset-right)) 6px calc(10px + env(safe-area-inset-left));
+  }
+
+  .logo-badge {
+    font-size: clamp(0.72rem, 3.1vw, 0.85rem);
+    padding: 4px 10px;
+    max-width: calc(100% - 100px);
+  }
+
+  .page-footer-nav {
+    justify-content: center;
+  }
+
+  .page-footer-nav > .arcade-btn {
+    flex: 1 1 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .screen-page {
+    padding: 10px calc(10px + env(safe-area-inset-right)) calc(18px + env(safe-area-inset-bottom)) calc(10px + env(safe-area-inset-left)) !important;
+  }
+
+  .page-header-banner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .page-header-banner > .arcade-btn,
+  .page-header-banner > div:last-child {
+    align-self: flex-start;
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .page-footer-nav {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .page-footer-nav > .arcade-btn {
+    width: 100%;
+    flex: none;
   }
 }

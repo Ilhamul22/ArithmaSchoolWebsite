@@ -152,6 +152,206 @@ button.go{background:var(--gold);color:#451A03;font-size:clamp(15px,3.2vw,20px);
 .card{display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 4px!important;font-size:clamp(11px,2.4vw,14px)!important}
 .card .ic{font-size:clamp(20px,5.5vw,30px);line-height:1.1}
 .card.sel{background:var(--gold);border-color:#92400E;transform:translateY(-2px);box-shadow:0 5px 0 #78350F}
+
+/* ==========================================================================
+   RESPONSIVE KHUSUS PERANGKAT SENTUH / HP & LAYAR PENDEK (LAPTOP UTUH)
+   ========================================================================== */
+#touch-controls{display:none}
+#rotate-overlay{display:none}
+#btn-exit-fs{display:none}
+
+@media (max-width:1024px),(pointer:coarse){
+  .box{
+    max-height:90dvh;
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+    padding:clamp(10px,2.5vw,18px);
+  }
+  .box h1{font-size:clamp(1.1rem,4vw,1.6rem)}
+  .box p{font-size:clamp(0.82rem,2.4vw,0.95rem)}
+  .q{font-size:clamp(0.92rem,2.8vw,1.15rem)}
+  button.b{min-height:44px;font-size:clamp(0.84rem,2.5vw,1rem)}
+  #qi,#qo input[type="text"]{font-size:16px !important;min-height:44px}
+}
+
+@media (max-height:460px){
+  .box{max-height:90dvh;padding:10px 14px}
+  .box h1{font-size:clamp(1rem,3.5vw,1.35rem);margin-bottom:4px}
+  .box p{margin:4px 0 8px}
+  .q{margin-bottom:8px !important}
+  #cdesc{min-height:2em !important}
+  #chars{gap:5px;margin:6px 0}
+}
+
+html.is-touch,html.is-touch body{
+  width:100dvw;
+  height:100dvh;
+}
+html.is-touch #app{
+  position:relative;
+  width:100dvw;
+  height:100dvh;
+  overflow:hidden;
+  background:#3B1D7A;
+}
+html.is-touch .hint{display:none !important}
+html.is-touch #stage{
+  width:100%;
+  height:100%;
+  flex:1;
+}
+html.is-touch canvas{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+html.is-touch #hud{
+  position:absolute;
+  top:calc(6px + env(safe-area-inset-top));
+  left:calc(8px + env(safe-area-inset-left));
+  right:calc(8px + env(safe-area-inset-right));
+  width:auto;
+  z-index:15;
+  margin-bottom:0;
+  padding:4px 10px;
+  font-size:clamp(10.5px,2.2vw,13.5px);
+  background:rgba(255,255,255,0.86);
+  backdrop-filter:blur(4px);
+  -webkit-backdrop-filter:blur(4px);
+  gap:6px;
+  flex-wrap:wrap;
+}
+html.is-touch.game-active-touch,
+html.is-touch.game-active-touch body,
+html.is-touch.game-active-touch #app,
+html.is-touch.game-active-touch #stage,
+html.is-touch.game-active-touch canvas,
+html.is-touch.game-active-touch #touch-controls{
+  touch-action:none !important;
+  overscroll-behavior:none !important;
+  user-select:none !important;
+  -webkit-user-select:none !important;
+  -webkit-touch-callout:none !important;
+}
+html.is-touch.game-active-touch #btn-exit-fs{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:34px;
+  min-height:30px;
+  padding:2px 8px;
+  font-size:12px;
+  font-weight:800;
+  border:2px solid #25283D;
+  border-radius:8px;
+  background:#FEE2E2;
+  color:#991B1B;
+  cursor:pointer;
+}
+
+/* Tombol Virtual Sentuh (HANYA tampil di perangkat sentuh saat bermain) */
+html.is-touch.in-gameplay #touch-controls{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  padding:0 calc(14px + env(safe-area-inset-right)) calc(12px + env(safe-area-inset-bottom)) calc(14px + env(safe-area-inset-left));
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  pointer-events:none;
+  z-index:16;
+}
+.tc-group{
+  display:flex;
+  gap:12px;
+  pointer-events:none;
+}
+.tc-btn{
+  pointer-events:auto;
+  min-width:64px;
+  min-height:64px;
+  width:clamp(64px,14vmin,78px);
+  height:clamp(64px,14vmin,78px);
+  border-radius:50%;
+  border:3px solid rgba(37,40,61,0.82);
+  background:rgba(255,255,255,0.42);
+  color:#1E293B;
+  font-size:24px;
+  font-weight:800;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 4px 12px rgba(0,0,0,0.28);
+  backdrop-filter:blur(3px);
+  -webkit-backdrop-filter:blur(3px);
+  touch-action:none;
+  user-select:none;
+  -webkit-user-select:none;
+  -webkit-touch-callout:none;
+  cursor:pointer;
+  transition:transform .06s ease,background .06s ease;
+}
+.tc-btn.tc-jump{background:rgba(167,243,208,0.52)}
+.tc-btn.tc-atk{background:rgba(253,230,138,0.56)}
+.tc-btn.pressed{
+  transform:scale(0.93);
+  background:rgba(253,224,71,0.85);
+}
+
+/* Overlay Putar HP ke Landscape (Fallback iPhone / saat portrait) */
+#rotate-overlay{
+  position:absolute;
+  inset:0;
+  z-index:40;
+  background:rgba(15,23,42,0.92);
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+  padding:20px;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+#rotate-overlay.show{display:flex}
+.rotate-card{
+  background:var(--card);
+  color:var(--ink);
+  border:3.5px solid #25283D;
+  border-radius:20px;
+  padding:20px 18px;
+  max-width:340px;
+  width:100%;
+  box-shadow:0 8px 0 #1E293B;
+}
+.rotate-phone-icon{
+  font-size:48px;
+  display:inline-block;
+  margin-bottom:8px;
+  animation:phoneTilt 1.6s ease-in-out infinite;
+}
+@keyframes phoneTilt{
+  0%,20%{transform:rotate(0deg)}
+  55%,80%{transform:rotate(-90deg)}
+  100%{transform:rotate(0deg)}
+}
+#btn-force-rotate{
+  margin-top:10px;
+  display:none;
+}
+#btn-force-rotate.visible{
+  display:inline-block;
+}
+
+/* Mode Putar Paksa 90 Derajat jika orientasi lock ditolak browser */
+body.force-landscape #app{
+  position:fixed !important;
+  top:0;
+  left:0;
+  width:100dvh !important;
+  height:100dvw !important;
+  transform:rotate(90deg) translateY(-100%);
+  transform-origin:top left;
+}
 </style>
 </head>
 <body>
@@ -160,10 +360,38 @@ button.go{background:var(--gold);color:#451A03;font-size:clamp(15px,3.2vw,20px);
     <span id="hl">♥♥♥♥</span>
     <span id="hg">◆ 0 &nbsp; Skor 0</span>
     <span id="hq">Monster 0/8 &nbsp; Buku Soal 0/12</span>
+    <button type="button" id="btn-exit-fs" title="Keluar Fullscreen">✕ Keluar</button>
   </div>
 
   <div id="stage">
     <canvas id="c"></canvas>
+
+    <!-- Kontrol Sentuh Virtual Overlay (hanya aktif di HP / perangkat sentuh) -->
+    <div id="touch-controls" aria-label="Kontrol Sentuh Game">
+      <div class="tc-group tc-left">
+        <button type="button" class="tc-btn" data-tkey="l" aria-label="Jalan Kiri">◀</button>
+        <button type="button" class="tc-btn" data-tkey="r" aria-label="Jalan Kanan">▶</button>
+      </div>
+      <div class="tc-group tc-right">
+        <button type="button" class="tc-btn tc-jump" data-tkey="j" aria-label="Lompat">▲</button>
+        <button type="button" class="tc-btn tc-atk" data-tkey="k" aria-label="Serang">⚔</button>
+      </div>
+    </div>
+
+    <!-- Overlay Peringatan Putar HP (muncul di HP jika masih portrait) -->
+    <div id="rotate-overlay" role="dialog" aria-live="polite">
+      <div class="rotate-card">
+        <div class="rotate-phone-icon">📱</div>
+        <div style="font-size:26px;margin-bottom:4px;">🦉</div>
+        <p style="font-weight:700;font-size:clamp(14px,3.8vw,17px);line-height:1.45;margin:0 0 8px;color:#1E293B;">
+          "Putar HP-mu ke posisi miring (landscape) ya, biar petualangannya seru!"
+        </p>
+        <small style="display:block;color:#64748B;font-weight:600;font-size:12px;">
+          Game otomatis dijeda dan akan lanjut saat layar sudah miring.
+        </small>
+        <button type="button" class="b go" id="btn-force-rotate">Putar Paksa 🔄</button>
+      </div>
+    </div>
 
     <!-- Modal Menu Awal Game: Misi Berangkat ke Sekolah -->
     <div class="ov" id="menu">
@@ -493,6 +721,8 @@ function notifyParentResult(win) {
 
 function finish(win) {
   st = "end"; $("end").hidden = false;
+  if (typeof clearAllTouchAndKeys === "function") clearAllTouchAndKeys();
+  if (typeof syncGameplayClass === "function") syncGameplayClass();
   if (win) {
     beep(660, 0.15, "triangle"); setTimeout(() => beep(880, 0.25, "triangle"), 150);
   }
@@ -505,6 +735,8 @@ function finish(win) {
 // BUKA KUIS DARI BUKU PELAJARAN AJAIB
 function openBonus(c) {
   st = "quiz"; for (const k in keys) keys[k] = false; c.state = 1;
+  if (typeof clearAllTouchAndKeys === "function") clearAllTouchAndKeys();
+  if (typeof syncGameplayClass === "function") syncGameplayClass();
   emit(c.x + 16, c.y + 16, 24, "#FBBF24", 4.5, 0.1, 40);
   beep(600, 0.12, "triangle");
   
@@ -535,7 +767,7 @@ function openBonus(c) {
     nb.textContent = "Lanjut Jalan ➔";
     nb.style.display = "block";
     nb.style.margin = "12px auto 0";
-    nb.onclick = () => { $("quiz").hidden = true; st = "play"; try { window.focus(); } catch (e) {} };
+    nb.onclick = () => { $("quiz").hidden = true; st = "play"; if (typeof syncGameplayClass === "function") syncGameplayClass(); try { window.focus(); } catch (e) {} };
     $("fb").appendChild(nb);
     if (window.typesetGameMath) window.typesetGameMath($("fb"));
   }
@@ -1414,10 +1646,16 @@ function fbg() {
 }
 
 function fitCanvas() {
-  const r = cv.getBoundingClientRect();
-  if (!r.width || !r.height) return;
+  let cssW = cv.clientWidth;
+  let cssH = cv.clientHeight;
+  if (!cssW || !cssH) {
+    const r = cv.getBoundingClientRect();
+    cssW = r.width;
+    cssH = r.height;
+  }
+  if (!cssW || !cssH) return;
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
-  const w = Math.round(r.width * dpr), h = Math.round(r.height * dpr);
+  const w = Math.round(cssW * dpr), h = Math.round(cssH * dpr);
   if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; }
 }
 addEventListener("resize", fitCanvas);
@@ -1488,8 +1726,33 @@ function draw() {
   g.restore();
 }
 
+let tabPaused = false;
+let portraitPaused = false;
+let gameSessionActive = false;
+let orientationLockFailed = false;
+let forceRotated = false;
+
+const isTouchDevice = (
+  (window.matchMedia && window.matchMedia("(pointer: coarse)").matches) ||
+  ("ontouchstart" in window && window.matchMedia && window.matchMedia("(hover: none)").matches)
+);
+if (isTouchDevice) {
+  document.documentElement.classList.add("is-touch");
+}
+
+function isGamePaused() {
+  return tabPaused || portraitPaused;
+}
+
 function loop(ts) {
-  const dt = Math.min(ts - last, 100);
+  if (isGamePaused()) {
+    last = ts;
+    acc = 0;
+    draw();
+    requestAnimationFrame(loop);
+    return;
+  }
+  const dt = Math.min(Math.max(ts - last, 0), 100);
   last = ts;
   acc += dt;
   while (acc >= 16.667) {
@@ -1582,24 +1845,221 @@ addEventListener("message", ev => {
   } else if (d.type === "ARITHMA_PARENT_KEY" && d.key) {
     if (d.eventType === "keydown") handleGameKeyDown(d.key, null);
     else if (d.eventType === "keyup") handleGameKeyUp(d.key);
+  } else if (d.type === "ARITHMA_EXIT_GAME") {
+    exitMobileGameMode();
   }
+});
+
+// Konversi koordinat sentuhan/pointer ke koordinat dunia game (memperhitungkan letterbox & rotasi paksa)
+function clientToWorld(clientX, clientY) {
+  const rect = cv.getBoundingClientRect();
+  if (!rect.width || !rect.height) return { x: 0, y: 0 };
+  let nx = (clientX - rect.left) / rect.width;
+  let ny = (clientY - rect.top) / rect.height;
+  if (forceRotated) {
+    const rx = ny;
+    const ry = 1 - nx;
+    nx = rx;
+    ny = ry;
+  }
+  return { x: nx * VW + cam, y: ny * H };
+}
+
+const activeTouchPointers = new Map();
+function syncTouchKeys() {
+  if (!isTouchDevice) return;
+  const pressedKeys = new Set(activeTouchPointers.values());
+  ["l", "r", "j", "k"].forEach(k => { keys[k] = pressedKeys.has(k); });
+  document.querySelectorAll("#touch-controls .tc-btn").forEach(btn => {
+    btn.classList.toggle("pressed", pressedKeys.has(btn.dataset.tkey));
+  });
+}
+
+function clearAllTouchAndKeys() {
+  activeTouchPointers.clear();
+  for (const k in keys) keys[k] = false;
+  document.querySelectorAll("#touch-controls .tc-btn").forEach(btn => btn.classList.remove("pressed"));
+}
+
+function syncGameplayClass() {
+  document.documentElement.classList.toggle("in-gameplay", isTouchDevice && st === "play" && !isGamePaused());
+}
+
+const portraitMQ = window.matchMedia ? window.matchMedia("(orientation: portrait)") : null;
+function isCurrentlyPortrait() {
+  if (portraitMQ) return portraitMQ.matches;
+  return window.innerHeight > window.innerWidth;
+}
+
+function checkOrientationState() {
+  if (!isTouchDevice) return;
+  const portrait = isCurrentlyPortrait();
+  if (!portrait && forceRotated) {
+    forceRotated = false;
+    document.body.classList.remove("force-landscape");
+  }
+  const needRotate = gameSessionActive && (st === "play" || st === "quiz") && portrait && !forceRotated;
+  portraitPaused = needRotate;
+  const ov = $("rotate-overlay");
+  if (ov) ov.classList.toggle("show", needRotate);
+  const fBtn = $("btn-force-rotate");
+  if (fBtn) fBtn.classList.toggle("visible", needRotate && orientationLockFailed);
+  if (needRotate) clearAllTouchAndKeys();
+  syncGameplayClass();
+  fitCanvas();
+}
+
+function notifyParentFullscreen(active) {
+  try {
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({ type: "ARITHMA_GAME_FULLSCREEN", active: !!active }, "*");
+    }
+  } catch (e) {}
+}
+
+async function enterMobileGameMode() {
+  if (!isTouchDevice) return;
+  document.documentElement.classList.add("game-active-touch");
+  notifyParentFullscreen(true);
+  const el = document.documentElement;
+  try {
+    const req = el.requestFullscreen || el.webkitRequestFullscreen || el.msRequestFullscreen;
+    if (req) {
+      const res = req.call(el);
+      if (res && typeof res.then === "function") await res;
+    }
+  } catch (e) {}
+  try {
+    if (screen.orientation && typeof screen.orientation.lock === "function") {
+      await screen.orientation.lock("landscape");
+      orientationLockFailed = false;
+    } else {
+      orientationLockFailed = true;
+    }
+  } catch (e) {
+    orientationLockFailed = true;
+  }
+  checkOrientationState();
+  setTimeout(fitCanvas, 60);
+}
+
+function exitMobileGameMode() {
+  gameSessionActive = false;
+  portraitPaused = false;
+  forceRotated = false;
+  document.documentElement.classList.remove("game-active-touch", "in-gameplay");
+  document.body.classList.remove("force-landscape");
+  const ov = $("rotate-overlay");
+  if (ov) ov.classList.remove("show");
+  clearAllTouchAndKeys();
+  notifyParentFullscreen(false);
+  try {
+    if (screen.orientation && typeof screen.orientation.unlock === "function") {
+      screen.orientation.unlock();
+    }
+  } catch (e) {}
+  try {
+    const fsEl = document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement;
+    if (fsEl) {
+      const ex = document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen;
+      if (ex) ex.call(document);
+    }
+  } catch (e) {}
+  fitCanvas();
+}
+
+if (isTouchDevice) {
+  // Multi-touch virtual buttons (Pointer Events)
+  const tc = $("touch-controls");
+  if (tc) {
+    tc.querySelectorAll(".tc-btn").forEach(btn => {
+      const tkey = btn.dataset.tkey;
+      btn.addEventListener("pointerdown", e => {
+        e.preventDefault();
+        try { btn.setPointerCapture(e.pointerId); } catch (err) {}
+        activeTouchPointers.set(e.pointerId, tkey);
+        syncTouchKeys();
+      });
+      const release = e => {
+        if (activeTouchPointers.has(e.pointerId)) {
+          activeTouchPointers.delete(e.pointerId);
+          syncTouchKeys();
+        }
+      };
+      btn.addEventListener("pointerup", release);
+      btn.addEventListener("pointercancel", release);
+      btn.addEventListener("lostpointercapture", release);
+      btn.addEventListener("contextmenu", e => e.preventDefault());
+    });
+    tc.addEventListener("contextmenu", e => e.preventDefault());
+  }
+  if (cv) cv.addEventListener("contextmenu", e => { if (gameSessionActive) e.preventDefault(); });
+
+  const fBtn = $("btn-force-rotate");
+  if (fBtn) {
+    fBtn.onclick = () => {
+      forceRotated = true;
+      document.body.classList.add("force-landscape");
+      checkOrientationState();
+      setTimeout(fitCanvas, 50);
+    };
+  }
+
+  const exitBtn = $("btn-exit-fs");
+  if (exitBtn) {
+    exitBtn.onclick = () => {
+      exitMobileGameMode();
+      $("quiz").hidden = true;
+      $("end").hidden = true;
+      $("menu").hidden = false;
+      st = "menu";
+      syncGameplayClass();
+    };
+  }
+
+  addEventListener("orientationchange", () => setTimeout(checkOrientationState, 80));
+  addEventListener("resize", checkOrientationState);
+  if (portraitMQ && typeof portraitMQ.addEventListener === "function") {
+    portraitMQ.addEventListener("change", checkOrientationState);
+  }
+  document.addEventListener("fullscreenchange", () => setTimeout(fitCanvas, 50));
+}
+
+// Pause otomatis saat tab tidak aktif (berlaku di semua perangkat tanpa mengubah kecepatan game)
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    tabPaused = true;
+    clearAllTouchAndKeys();
+  } else {
+    tabPaused = false;
+    last = performance.now();
+    acc = 0;
+  }
+  syncGameplayClass();
 });
 
 function startGame() {
   reset();
   window.__gameStartTime = Date.now();
+  gameSessionActive = true;
   $("menu").hidden = true;
   $("end").hidden = true;
   $("quiz").hidden = true;
   st = "play";
+  if (isTouchDevice) {
+    enterMobileGameMode();
+    syncGameplayClass();
+  }
   try { window.focus(); } catch (e) {}
 }
 
 $("start").onclick = startGame;
 $("again").onclick = () => {
+  if (isTouchDevice) exitMobileGameMode();
   $("end").hidden = true;
   $("menu").hidden = false;
   st = "menu";
+  syncGameplayClass();
 };
 
 reset();
